@@ -1,0 +1,10 @@
+/* Traditional 1 */
+
+position: absolute;
+width: 298.31px;
+height: 320.7px;
+left: 1171px;
+top: calc(50% - 320.7px/2 + 187.35px);
+
+background: url(Traditional);
+transform: rotate(8.68deg);

@@ -1,0 +1,10 @@
+/* Shop 1 */
+
+position: absolute;
+width: 357px;
+height: 416px;
+left: 316px;
+top: calc(50% - 416px/2 + 46px);
+
+background: url(Shop.png);
+transform: rotate(-9.11deg);

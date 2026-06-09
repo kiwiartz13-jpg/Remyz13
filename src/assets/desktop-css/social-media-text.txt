@@ -1,0 +1,9 @@
+/* Text_Social Media */
+
+position: absolute;
+width: 472px;
+height: 432px;
+left: calc(50% - 472px/2);
+bottom: -51px;
+
+background: url(IMG_7442.png);

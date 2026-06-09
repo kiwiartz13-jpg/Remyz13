@@ -1,0 +1,10 @@
+/* About Me Still 1 */
+
+position: absolute;
+width: 350px;
+height: 360px;
+left: 427px;
+top: -69px;
+
+background: url(About Me Still.png);
+transform: rotate(28.6deg);

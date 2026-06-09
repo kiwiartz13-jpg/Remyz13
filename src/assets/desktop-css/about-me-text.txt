@@ -1,0 +1,10 @@
+/* Text_About Me */
+
+position: absolute;
+width: 374.65px;
+height: 384.86px;
+left: 409px;
+top: -69px;
+
+background: url(IMG_7444.png);
+transform: rotate(19.64deg);

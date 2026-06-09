@@ -1,0 +1,9 @@
+/* Text_Traditional */
+
+position: absolute;
+width: 304px;
+height: 354px;
+left: 1186px;
+bottom: 144px;
+
+background: url(IMG_7441.png);

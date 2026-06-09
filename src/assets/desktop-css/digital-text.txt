@@ -1,0 +1,10 @@
+/* Text_Digital */
+
+position: absolute;
+width: 373.69px;
+height: 441.8px;
+left: 1186px;
+top: 38px;
+
+background: url(IMG_7440.png);
+transform: rotate(1.43deg);

@@ -1,0 +1,9 @@
+/* Social Media 1 */
+
+position: absolute;
+width: 403px;
+height: 369px;
+left: calc(50% - 403px/2 - 0.5px);
+bottom: -22px;
+
+background: url(Social Media.png);

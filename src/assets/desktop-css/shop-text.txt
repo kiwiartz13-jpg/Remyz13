@@ -1,0 +1,9 @@
+/* Text_Shop */
+
+position: absolute;
+width: 393px;
+height: 458px;
+left: 341px;
+bottom: 244px;
+
+background: url(IMG_7443.png);

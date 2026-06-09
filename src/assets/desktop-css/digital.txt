@@ -1,0 +1,9 @@
+/* Digital Still 1 */
+
+position: absolute;
+width: 398px;
+height: 375px;
+left: 1171px;
+top: 59px;
+
+background: url(Digital Still.png);
