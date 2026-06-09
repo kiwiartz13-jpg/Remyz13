@@ -3,7 +3,7 @@
 position: absolute;
 width: 398px;
 height: 375px;
-left: 1171px;
-top: 59px;
+left: calc(50% - 398px/2 + 410px);
+top: calc(50% - 375px/2 - 293.5px);
 
 background: url(Digital Still.png);

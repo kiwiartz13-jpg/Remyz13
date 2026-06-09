@@ -6,7 +6,7 @@ export type ImageConfig = React.CSSProperties
 type HoverButtonProps = {
     img: string,
     subImg?: string,
-    hoverImg: string,
+    hoverImg?: string,
     subImgConfig?: string,
     imgConfig: string,
     onClick: () => void
@@ -25,13 +25,13 @@ export default function HoverButton({ img, subImg, hoverImg, subImgConfig, imgCo
                 style={buttonStyle}
                 className="border-0 bg-transparent p-0 cursor-pointer"
             >
-                <img src={hovered ? hoverImg : img} style={{ width: "100%", height: "100%" }} />
+                <img className="" src={hovered && hoverImg !== undefined ? hoverImg : img} style={{ width: "100%", height: "100%" }} />
             </button>
             {subImg && subImgConfig && (
                 <img
                     src={subImg}
                     style={{ position: "absolute", ...parseImageConfig(subImgConfig) }}
-                    className="pointer-events-none"
+                    className=" pointer-events-none"
                 />
             )}
         </>

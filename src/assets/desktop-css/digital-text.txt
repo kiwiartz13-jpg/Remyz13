@@ -3,8 +3,8 @@
 position: absolute;
 width: 373.69px;
 height: 441.8px;
-left: 1186px;
-top: 38px;
+left: calc(50% - 373.69px/2 + 412.845px);
+top: calc(50% - 441.8px/2 - 281.1px);
 
 background: url(IMG_7440.png);
 transform: rotate(1.43deg);

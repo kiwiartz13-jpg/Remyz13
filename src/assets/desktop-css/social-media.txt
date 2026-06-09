@@ -4,6 +4,6 @@ position: absolute;
 width: 403px;
 height: 369px;
 left: calc(50% - 403px/2 - 0.5px);
-bottom: -22px;
+bottom: calc(50% - 200px/2 - 401.5px);
 
 background: url(Social Media.png);

@@ -1,9 +1,9 @@
-/* Text_Social Media */
+/* Social Media 1 */
 
 position: absolute;
-width: 472px;
-height: 432px;
-left: calc(50% - 472px/2);
-bottom: -51px;
+width: 403px;
+height: 369px;
+left: calc(50% - 403px/2 - 0.5px);
+bottom: calc(50% - 250px/2 - 377.5px);
 
-background: url(IMG_7442.png);
+background: url(Social Media.png);

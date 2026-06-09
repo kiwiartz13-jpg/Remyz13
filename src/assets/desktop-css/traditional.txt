@@ -3,7 +3,7 @@
 position: absolute;
 width: 298.31px;
 height: 320.7px;
-left: 1171px;
+left: calc(50% - 298.31px/2 + 360.155px);
 top: calc(50% - 320.7px/2 + 187.35px);
 
 background: url(Traditional);

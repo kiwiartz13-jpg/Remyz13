@@ -6,9 +6,8 @@ import aboutMeText from "../assets/menu-buttons/about-me-text.png";
 import digitalStill from "../assets/menu-buttons/digital-still.png";
 import digitalGif from "../assets/menu-buttons/digital.gif";
 import digitalText from "../assets/menu-buttons/digital-text.png";
-import logoStill from "../assets/menu-buttons/logo-still.png.png";
 import logoGif from "../assets/menu-buttons/logo.gif";
-import shopStill from "../assets/menu-buttons/shop-still.png.png";
+import shopStill from "../assets/menu-buttons/shop-still.png";
 import shopGif from "../assets/menu-buttons/shop.gif";
 import shopText from "../assets/menu-buttons/shop-text.png";
 import socialMediaStill from "../assets/menu-buttons/social-media-still.png";
@@ -30,13 +29,9 @@ import socialMediaTextCss from "../assets/desktop-css/social-media-text.txt?raw"
 import traditionalCss from "../assets/desktop-css/traditional.txt?raw";
 import traditionalTextCss from "../assets/desktop-css/traditional-text.txt?raw";
 
-import wallpaper from "../assets/wallpaper.png"
-
 export default function DesktopHomepage() {
     return (
-        <div className="relative w-screen h-screen overflow-hidden bg-[#1A355E]"
-          style={{ backgroundImage: `url(${wallpaper})`, backgroundSize: "cover", backgroundPosition: "center" }}
-        >
+        <div className="relative w-full h-full overflow-hidden">
             <HoverButton
                 img={aboutMeStill}
                 subImg={aboutMeText}
@@ -54,8 +49,7 @@ export default function DesktopHomepage() {
                 onClick={() => {}}
             />
             <HoverButton
-                img={logoStill}
-                hoverImg={logoGif}
+                img={logoGif}
                 imgConfig={logoCss}
                 onClick={() => {}}
             />

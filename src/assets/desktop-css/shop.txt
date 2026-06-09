@@ -3,7 +3,7 @@
 position: absolute;
 width: 357px;
 height: 416px;
-left: 316px;
+left: calc(50% - 357px/2 - 465.5px);
 top: calc(50% - 416px/2 + 46px);
 
 background: url(Shop.png);

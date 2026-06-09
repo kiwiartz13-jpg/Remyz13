@@ -3,7 +3,7 @@
 position: absolute;
 width: 304px;
 height: 354px;
-left: 1186px;
-bottom: 144px;
+left: calc(50% - 354px/2 + 378px);
+bottom: calc(50% - 304px/2 - 219px);
 
 background: url(IMG_7441.png);
