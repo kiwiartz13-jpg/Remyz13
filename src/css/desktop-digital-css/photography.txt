@@ -1,0 +1,9 @@
+/* Photography Icon */
+
+position: absolute;
+width: 286px;
+height: 250px;
+left: calc(50% + 431px);
+top: calc(50% - 503px);
+
+background: url(Photography.png);

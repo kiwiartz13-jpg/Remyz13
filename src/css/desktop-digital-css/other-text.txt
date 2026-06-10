@@ -1,0 +1,9 @@
+/* Digital Other Text 1 */
+
+position: absolute;
+width: 390px;
+height: 493px;
+right: calc(50% - 986px);
+top: calc(50% - 640px);
+
+background: url(Digital Other Text.png);

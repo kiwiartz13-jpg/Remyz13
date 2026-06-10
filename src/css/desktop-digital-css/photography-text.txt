@@ -1,0 +1,10 @@
+/* Photography Text 1 */
+
+position: absolute;
+width: 473px;
+height: 413px;
+right: calc(50% - 821px);
+top: calc(50% - 590px);
+
+background: url(Photography Text.png);
+

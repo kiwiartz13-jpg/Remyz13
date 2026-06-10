@@ -1,0 +1,9 @@
+/* Digital Art Icon */
+
+position: absolute;
+width: 269px;
+height: 257px;
+left: calc(50% - 28px);
+top: calc(50% - 503px);
+
+background: url(Digital Art.png);

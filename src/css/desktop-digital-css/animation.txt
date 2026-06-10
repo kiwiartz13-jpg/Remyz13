@@ -1,0 +1,9 @@
+/* Animation Icon */
+
+position: absolute;
+width: 292px;
+height: 264px;
+left: 1143px;
+top: 30px;
+
+background: url(Animation.png);

@@ -3,16 +3,17 @@ import { parseImageConfig } from "../utils/parseImageConfig"
 
 export type ImageConfig = React.CSSProperties
 
-type HoverButtonProps = {
+type HoverImgButtonProps = {
     img: string,
     subImg?: string,
     hoverImg?: string,
     subImgConfig?: string,
     imgConfig: string,
-    onClick: () => void
+    onClick: () => void,
+    scale?: boolean
 }
 
-export default function HoverButton({ img, subImg, hoverImg, subImgConfig, imgConfig, onClick }: HoverButtonProps) {
+export default function HoverImgButton({ img, subImg, hoverImg, subImgConfig, imgConfig, onClick, scale = true }: HoverImgButtonProps) {
     const [hovered, setHovered] = useState(false);
     const buttonStyle: React.CSSProperties = { position: "absolute", ...parseImageConfig(imgConfig) };
 
@@ -23,9 +24,9 @@ export default function HoverButton({ img, subImg, hoverImg, subImgConfig, imgCo
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
                 style={buttonStyle}
-                className="border-0 bg-transparent p-0 cursor-pointer"
+                className={`border-0 bg-transparent p-0 ${scale ? "cursor-pointer" : ""}`}
             >
-                <img className="" src={hovered && hoverImg !== undefined ? hoverImg : img} style={{ width: "100%", height: "100%" }} />
+                <img className={`${scale ? "hover:scale-103" : ""}`} src={hovered && hoverImg !== undefined ? hoverImg : img} style={{ width: "100%", height: "100%" }} />
             </button>
             {subImg && subImgConfig && (
                 <img

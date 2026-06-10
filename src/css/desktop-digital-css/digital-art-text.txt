@@ -1,0 +1,9 @@
+/* Digital Art Text */
+
+position: absolute;
+width: 399px;
+height: 382px;
+left: calc(50% - 85px);
+top: calc(50% - 570px);
+
+background: url(IMG_7493.png);

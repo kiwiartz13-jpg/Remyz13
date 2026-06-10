@@ -1,4 +1,6 @@
-import type { ImageConfig } from "../components/hover-button";
+import type { ImageConfig } from "../components/hover-img-button";
+
+export type Page = "home" | "digital";
 
 const ALLOWED = new Set([
     "width", "height",

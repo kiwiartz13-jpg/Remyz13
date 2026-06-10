@@ -1,0 +1,9 @@
+/* Other Icon */
+
+position: absolute;
+width: 250px;
+height: 316px;
+right: calc(50% - 906px);
+top: calc(50% - 536px);
+
+background: url(IMG_7479.png);

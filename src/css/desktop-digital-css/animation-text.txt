@@ -1,0 +1,9 @@
+/* Animation Text */
+
+position: absolute;
+width: 462px;
+height: 417px;
+left: calc(50% + 98px);
+top: calc(50% - 580px);
+
+background: url(IMG_7492.png);
