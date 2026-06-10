@@ -22,11 +22,16 @@ import photographyTextCss from "../css/desktop-digital-css/photography-text.txt?
 
 
 
+import { useState } from "react";
+
 import HoverSizeButton from "../components/hover-size-button";
 import type { Page } from "../utils/parseImageConfig";
 import HoverImgButton from "../components/hover-img-button";
+import ArtGallery from "../components/art-gallery";
 
 export default function DesktopDigital({ onNavigate }: { onNavigate: (screen: Page) => void; }) {
+    const [subfolder, setSubfolder] = useState<string | undefined>(undefined);
+
     return (
         <div className="flex justify-between w-full h-full overflow-hidden">
             <div>
@@ -37,34 +42,37 @@ export default function DesktopDigital({ onNavigate }: { onNavigate: (screen: Pa
                     onClick={() => onNavigate("home")}
                 />
             </div>
+            <div className="flex-1 min-w-0 h-full p-4">
+                <ArtGallery folder="digital-art" subfolder={subfolder} />
+            </div>
             <div>
                 <HoverSizeButton
                     img={animationImg}
                     subImg={animationText}
                     imgConfig={animationCss}
                     subImgConfig={animationTextCss}
-                    onClick={() => {}}
+                    onClick={() => setSubfolder("animation")}
                 />
                 <HoverSizeButton
                     img={digitalArtImg}
                     subImg={digitalArtText}
                     imgConfig={digitalArtCss}
                     subImgConfig={digitalArtTextCss}
-                    onClick={() => {}}
+                    onClick={() => setSubfolder("digital-art")}
                 />
                 <HoverSizeButton
                     img={otherImg}
                     subImg={otherText}
                     imgConfig={otherCss}
                     subImgConfig={otherTextCss}
-                    onClick={() => {}}
+                    onClick={() => setSubfolder("other")}
                 />
                 <HoverSizeButton
                     img={photographyImg}
                     subImg={photographyText}
                     imgConfig={photographyCss}
                     subImgConfig={photographyTextCss}
-                    onClick={() => {}}
+                    onClick={() => setSubfolder("photography")}
                 />
 
             </div>
