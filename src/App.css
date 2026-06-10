@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@theme {
+    --animate-fade-in: fade-in 0.2s ease-out;
+    --animate-lightbox-in: lightbox-in 0.25s ease-out;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes lightbox-in {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+}

@@ -34,6 +34,9 @@ export default function DesktopDigital({ onNavigate }: { onNavigate: (screen: Pa
 
     return (
         <div className="flex justify-between w-full h-full overflow-hidden">
+            <div className="flex-1 min-w-0 h-full p-4">
+                <ArtGallery folder="digital-art" subfolder={subfolder} />
+            </div>
             <div>
                 <HoverImgButton
                     img={homeImg}
@@ -42,9 +45,7 @@ export default function DesktopDigital({ onNavigate }: { onNavigate: (screen: Pa
                     onClick={() => onNavigate("home")}
                 />
             </div>
-            <div className="flex-1 min-w-0 h-full p-4">
-                <ArtGallery folder="digital-art" subfolder={subfolder} />
-            </div>
+
             <div>
                 <HoverSizeButton
                     img={animationImg}
