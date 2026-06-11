@@ -18,10 +18,16 @@ export default function App() {
 
   return (
     <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#1A355E', backgroundImage: `url(${wallpaper})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-      <div style={{ width: 1920, height: 1080, transform: `scale(${scale})`, transformOrigin: 'center', flexShrink: 0 }}>
-        {screen === 'home' && <DesktopHomepage onNavigate={setScreen} />}
-        {screen === 'digital' && <DesktopDigital onNavigate={setScreen} />}
-      </div>
+      {screen === 'home' && (
+        <div style={{ width: 1920, height: 1080, transform: `scale(${scale})`, transformOrigin: 'center', flexShrink: 0 }}>
+          <DesktopHomepage onNavigate={setScreen} />
+        </div>
+      )}
+      {screen === 'digital' && (
+        <div style={{ width: '100%', height: '100%' }}>
+          <DesktopDigital onNavigate={setScreen} />
+        </div>
+      )}
     </div>
   )
 }
