@@ -38,7 +38,8 @@ function getImages(folder: string, subfolder?: string): ArtImage[] {
         })
         .map(([path, url]) => ({
             src: url,
-            name: path.split("/").pop()!.replace(IMAGE_EXTENSIONS, ""),
+            // a leading "_" displays as "#" since "#" can't be used in filenames
+            name: path.split("/").pop()!.replace(IMAGE_EXTENSIONS, "").replace(/^_/, "#"),
         }));
 }
 

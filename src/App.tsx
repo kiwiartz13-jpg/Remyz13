@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import DesktopHomepage from './desktop-layout/desktop-homepage'
 import DesktopDigital from './desktop-layout/desktop-digital'
+import DesktopTraditional from './desktop-layout/desktop-traditional'
 import wallpaper from './assets/wallpaper.png'
 import type { Page } from './utils/parseImageConfig'
 
@@ -26,6 +27,11 @@ export default function App() {
       {screen === 'digital' && (
         <div style={{ width: '100%', height: '100%' }}>
           <DesktopDigital onNavigate={setScreen} />
+        </div>
+      )}
+      {screen === 'traditional' && (
+        <div style={{ width: '100%', height: '100%' }}>
+          <DesktopTraditional onNavigate={setScreen} />
         </div>
       )}
     </div>

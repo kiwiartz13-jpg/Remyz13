@@ -78,7 +78,7 @@ export default function DesktopHomepage({ onNavigate }: { onNavigate: (page: Pag
                 hoverImg={traditionalGif}
                 imgConfig={traditionalCss}
                 subImgConfig={traditionalTextCss}
-                onClick={() => {}}
+                onClick={() => onNavigate("traditional")}
             />
         </div>
     );
