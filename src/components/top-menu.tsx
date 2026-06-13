@@ -69,7 +69,7 @@ function CalenderButton() {
 
     useEffect(() => {
         if (phase !== "playing") return;
-        timerRef.current = setTimeout(() => setPhase("done"), 1500);
+        timerRef.current = setTimeout(() => setPhase("done"), 1400);
         return () => { if (timerRef.current) clearTimeout(timerRef.current); };
     }, [phase]);
 
