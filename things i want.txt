@@ -1,4 +1,1 @@
-make digital tab icons smaller
-remove the blank side bars? and move home logo more to the top left corner
-when i go back to home back digital icon/icon i just clicked takes a bit to load in, how to fix this?
-move the "Crash Landing Flipbook" into traditional instead of digital
+dont make them tile in 3 wide, maybe 4 or have some be big and some medium
