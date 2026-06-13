@@ -39,7 +39,7 @@ function getImages(folder: string, subfolder?: string): ArtImage[] {
         .map(([path, url]) => ({
             src: url,
             // a leading "_" displays as "#" since "#" can't be used in filenames
-            name: path.split("/").pop()!.replace(IMAGE_EXTENSIONS, "").replace(/^_/, "#"),
+            name: path.split("/").pop()!.replace(IMAGE_EXTENSIONS, "").replaceAll("_", " ").trim(),
         }));
 }
 
@@ -56,7 +56,7 @@ export default function ArtGallery({ folder, subfolder }: ArtGalleryProps) {
                         className="group relative mb-4 break-inside-avoid cursor-pointer"
                         onClick={() => setSelected(image)}
                     >
-                        <img src={image.src} className="w-full h-auto block" />
+                        <img src={image.src} className="w-full h-auto block" loading="lazy" />
                         <div className="absolute bottom-0 left-0 w-full bg-[#00000070] text-white px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
                             {image.name}
                         </div>
