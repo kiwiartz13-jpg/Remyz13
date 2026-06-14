@@ -27,6 +27,7 @@ export default function CalenderButton({ filter, filters }: CalenderButtonProps)
     const reversedVid = useRef<HTMLVideoElement>(null);
 
     const open = phase === "end" || phase === "one" || phase === "two" || phase === "three" || phase === "four"
+    const showButtons = open || phase === "opening"
 
     const handleClick = () => {
         if (phase === "start") {
@@ -94,7 +95,7 @@ export default function CalenderButton({ filter, filters }: CalenderButtonProps)
             <button className="absolute top-0 left-0 w-full h-28 cursor-pointer" onClick={handleClick} >
                 
             </button>
-            {open && (
+            {showButtons && (
                 <>
                     <button className="absolute top-28 left-0 w-full h-8 cursor-pointer" onClick={() => select("one", filters[0])}>
 

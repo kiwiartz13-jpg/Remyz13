@@ -11,10 +11,12 @@ import { useRef, useState } from "react";
 import type { Page } from "../utils/parseImageConfig";
 import ArtGallery from "../components/art-gallery";
 import { TopMenu } from "../components/top-menu";
+import type { YearFilter } from "../components/calender-button";
 
 export default function DesktopTraditional({ onNavigate }: { onNavigate: (screen: Page) => void; }) {
     const [subfolder, setSubfolder] = useState<string | undefined>(undefined);
     const scrollRef = useRef<HTMLDivElement>(null);
+    const [years, setYears] = useState<YearFilter | undefined>(undefined);
 
     return (
         <div ref={scrollRef} className="flex flex-col w-full h-full overflow-y-auto">
@@ -51,11 +53,12 @@ export default function DesktopTraditional({ onNavigate }: { onNavigate: (screen
                         onRelease: () => setSubfolder(undefined)
                     },
                 ]}
-
+                calenderFilter={setYears}
+                calenderFilters={[[2021, 2023], 2024, 2025, 2026]}
             />
 
             <div className="flex-1 p-4 pb-6">
-                <ArtGallery folder="traditional-art" subfolder={subfolder} />
+                <ArtGallery folder="traditional-art" subfolder={subfolder} years={years} />
             </div>
 
             <div className="flex justify-center pb-8">
