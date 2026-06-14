@@ -28,7 +28,7 @@ export default function HoverSizeButton({ img, subImg, subImgConfig, imgConfig, 
                 <img
                     src={subImg}
                     style={{ position: "absolute", ...parseImageConfig(subImgConfig) }}
-                    className=" pointer-events-none"
+                    className="pointer-events-none"
                 />
             )}
         </>

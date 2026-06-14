@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
 
-// Eagerly imports every file one folder deep inside src/art (art/<folder>/<subfolder>/<file>)
 const artModules = import.meta.glob("../art/*/*/*", {
     eager: true,
     query: "?url",
@@ -12,6 +11,13 @@ const IMAGE_EXTENSIONS = /\.(png|jpe?g|gif|webp|svg|avif)$/i;
 type ArtGalleryProps = {
     folder: string,
     subfolder?: string,
+    years?: number | number[],
+}
+
+function matchesYears(name: string, years?: number | number[]): boolean {
+    if (years === undefined) return true;
+    const list = Array.isArray(years) ? years : [years];
+    return list.some((year) => name.includes(String(year)));
 }
 
 function shuffle<T>(items: T[]): T[] {
@@ -32,19 +38,15 @@ function getImages(folder: string, subfolder?: string): ArtImage[] {
     return Object.entries(artModules)
         .filter(([path]) => {
             if (!IMAGE_EXTENSIONS.test(path)) return false;
-            // path looks like "../art/<folder>/<subfolder>/<file>"
             const [, , pathFolder, pathSubfolder] = path.split("/");
             return pathFolder === folder && (subfolder === undefined || pathSubfolder === subfolder);
         })
         .map(([path, url]) => ({
             src: url,
-            // a leading "_" displays as "#" since "#" can't be used in filenames
             name: path.split("/").pop()!.replace(IMAGE_EXTENSIONS, "").replaceAll("_", " ").trim(),
         }));
 }
 
-// Preloads images purely to read their aspect ratios so we can reserve each
-// tile's height before it renders, keeping the masonry layout from reflowing.
 function useAspectRatios(images: ArtImage[]): Record<string, number> {
     const [ratios, setRatios] = useState<Record<string, number>>({});
 
@@ -61,7 +63,6 @@ function useAspectRatios(images: ArtImage[]): Record<string, number> {
             };
             loader.onerror = () => {
                 if (cancelled) return;
-                // Fall back to a square so a broken image doesn't block the reveal.
                 setRatios((prev) => ({ ...prev, [image.src]: 1 }));
             };
             loader.src = image.src;
@@ -72,16 +73,27 @@ function useAspectRatios(images: ArtImage[]): Record<string, number> {
     return ratios;
 }
 
-export default function ArtGallery({ folder, subfolder }: ArtGalleryProps) {
-    const images = useMemo(() => shuffle(getImages(folder, subfolder)), [folder, subfolder]);
+export default function ArtGallery({ folder, subfolder, years }: ArtGalleryProps) {
+    const yearsKey = JSON.stringify(years);
+    const images = useMemo(
+        () => shuffle(getImages(folder, subfolder).filter((image) => matchesYears(image.name, years))),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [folder, subfolder, yearsKey]
+    );
     const [selected, setSelected] = useState<ArtImage | null>(null);
 
     const ratios = useAspectRatios(images);
-    const ready = images.length > 0 && images.every((image) => ratios[image.src] !== undefined);
+    const empty = images.length === 0;
+    const ready = !empty && images.every((image) => ratios[image.src] !== undefined);
 
     return (
         <div className="w-full h-full overflow-y-auto relative">
-            {!ready && (
+            {empty && (
+                <div className="absolute inset-0 flex items-center justify-center text-white/60">
+                    no art :(
+                </div>
+            )}
+            {!empty && !ready && (
                 <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                 </div>
