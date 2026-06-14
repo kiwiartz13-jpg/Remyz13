@@ -47,7 +47,7 @@ function MenuButton({ onClick, onRelease, img, hoverImg, w = 175, h = 175, selec
             <img
                 src={hovered && hoverImg !== undefined ? hoverImg : img}
                 style={{ width: w, height: h }}
-                className={`${selected ? "scale-110" : "hover:scale-105"}`}
+                className={`${selected ? "scale-120" : "hover:scale-105"}`}
             />
         </button>
     )

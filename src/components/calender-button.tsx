@@ -56,7 +56,7 @@ export default function CalenderButton({ filter, filters }: CalenderButtonProps)
                 muted
                 playsInline
                 preload="auto"
-                onEnded={() => setPhase("end")}
+                onEnded={() => setPhase((p) => p === "opening" ? "end" : p)}
                 className={`absolute top-0 left-0 ${phase === "opening" ? "opacity-100" : "opacity-0"} `}
             />
             <video
@@ -65,7 +65,7 @@ export default function CalenderButton({ filter, filters }: CalenderButtonProps)
                 muted
                 playsInline
                 preload="auto"
-                onEnded={() => setPhase("start")}
+                onEnded={() => setPhase((p) => p === "closing" ? "start" : p)}
                 className={`absolute top-0 left-0 ${phase === "closing" ? "opacity-100" : "opacity-0"} `}
             />
             <img
