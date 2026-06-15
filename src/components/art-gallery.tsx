@@ -82,6 +82,33 @@ export default function ArtGallery({ folder, subfolder, years }: ArtGalleryProps
     );
     const [selected, setSelected] = useState<ArtImage | null>(null);
 
+    useEffect(() => {
+        const link = document.querySelector<HTMLLinkElement>("link[rel='icon']");
+        if (!link || !selected) return;
+        const original = link.href;
+
+        let cancelled = false;
+        const timer = window.setTimeout(() => {
+            const img = new Image();
+            img.onload = () => {
+                if (cancelled) return;
+                const canvas = document.createElement("canvas");
+                canvas.width = canvas.height = 64;
+                const ctx = canvas.getContext("2d");
+                if (!ctx) return;
+                ctx.drawImage(img, 0, 0, 64, 64);
+                link.href = canvas.toDataURL("image/png");
+            };
+            img.src = selected.src;
+        }, 150);
+
+        return () => {
+            cancelled = true;
+            window.clearTimeout(timer);
+            link.href = original;
+        };
+    }, [selected]);
+
     const ratios = useAspectRatios(images);
     const empty = images.length === 0;
     const ready = !empty && images.every((image) => ratios[image.src] !== undefined);
