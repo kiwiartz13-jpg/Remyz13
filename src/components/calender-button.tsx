@@ -11,6 +11,11 @@ import two from "../assets/calender-button/2-selected.png"
 import three from "../assets/calender-button/3-selected.png"
 import four from "../assets/calender-button/4-selected.png"
 
+import twoHover from "../assets/calender-button/2-hover.png"
+import oneHover from "../assets/calender-button/1-hover.png"
+import threeHover from "../assets/calender-button/3-hover.png"
+import fourHover from "../assets/calender-button/4-hover.png"
+
 type State = "start" | "opening" | "closing" | "end" |
     "one" | "two" | "three" | "four"
 
@@ -23,6 +28,7 @@ type CalenderButtonProps = {
 
 export default function CalenderButton({ filter, filters }: CalenderButtonProps) {
     const [phase, setPhase] = useState<State>("start");
+    const [hovered, setHovered] = useState<null | "one" | "two" | "three" | "four">(null);
     const forwardsVid = useRef<HTMLVideoElement>(null);
     const reversedVid = useRef<HTMLVideoElement>(null);
 
@@ -92,24 +98,59 @@ export default function CalenderButton({ filter, filters }: CalenderButtonProps)
                 src={four}
                 className={`absolute top-0 left-0 ${phase === "four" ? "opacity-100 cursor-pointer" : "opacity-0"} `}
             />
+            <img
+                src={oneHover}
+                className={`absolute top-0 left-0 ${open && hovered === "one" ? "opacity-100" : "opacity-0"} `}
+            />
+            <img
+                src={twoHover}
+                className={`absolute top-0 left-0 ${open && hovered === "two" ? "opacity-100" : "opacity-0"} `}
+            />
+            <img
+                src={threeHover}
+                className={`absolute top-0 left-0 ${open && hovered === "three" ? "opacity-100" : "opacity-0"} `}
+            />
+            <img
+                src={fourHover}
+                className={`absolute top-0 left-0 ${open && hovered === "four" ? "opacity-100" : "opacity-0"} `}
+            />
             <button className="absolute top-0 left-0 w-full h-28 cursor-pointer" onClick={handleClick} >
-                
+
             </button>
             {showButtons && (
-                <>
-                    <button className="absolute top-28 left-0 w-full h-8 cursor-pointer" onClick={() => select("one", filters[0])}>
+                <div
+                    className="absolute top-28 left-0 w-full"
+                    onMouseLeave={() => setHovered(null)}
+                >
+                    <button
+                        className="block w-full h-8 cursor-pointer"
+                        onClick={() => select("one", filters[0])}
+                        onMouseEnter={() => open && setHovered("one")}
+                    >
 
                     </button>
-                    <button className="absolute top-36 left-0 w-full h-8 cursor-pointer" onClick={() => select("two", filters[1])}>
+                    <button
+                        className="block w-full h-8 cursor-pointer"
+                        onClick={() => select("two", filters[1])}
+                        onMouseEnter={() => open && setHovered("two")}
+                    >
 
                     </button>
-                    <button className="absolute top-44 left-0 w-full h-8 cursor-pointer" onClick={() => select("three", filters[2])}>
+                    <button
+                        className="block w-full h-8 cursor-pointer"
+                        onClick={() => select("three", filters[2])}
+                        onMouseEnter={() => open && setHovered("three")}
+                    >
 
                     </button>
-                    <button className="absolute top-52 left-0 w-full h-8 cursor-pointer" onClick={() => select("four", filters[3])}>
+                    <button
+                        className="block w-full h-8 cursor-pointer"
+                        onClick={() => select("four", filters[3])}
+                        onMouseEnter={() => open && setHovered("four")}
+                    >
 
                     </button>
-                </>
+                </div>
             )}
         </div>
     );
