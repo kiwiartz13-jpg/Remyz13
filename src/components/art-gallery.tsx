@@ -47,26 +47,30 @@ function getImages(folder: string, subfolder?: string): ArtImage[] {
         }));
 }
 
+const LOAD_CONCURRENCY = 4;
+
 function useAspectRatios(images: ArtImage[]): Record<string, number> {
     const [ratios, setRatios] = useState<Record<string, number>>({});
 
     useEffect(() => {
         let cancelled = false;
-        images.forEach((image) => {
+        let next = 0;
+
+        const loadNext = () => {
+            if (cancelled || next >= images.length) return;
+            const image = images[next++];
             const loader = new Image();
-            loader.onload = () => {
+            const done = (ratio: number) => {
                 if (cancelled) return;
-                setRatios((prev) => ({
-                    ...prev,
-                    [image.src]: loader.naturalWidth / loader.naturalHeight,
-                }));
+                setRatios((prev) => ({ ...prev, [image.src]: ratio }));
+                loadNext();
             };
-            loader.onerror = () => {
-                if (cancelled) return;
-                setRatios((prev) => ({ ...prev, [image.src]: 1 }));
-            };
+            loader.onload = () => done(loader.naturalWidth / loader.naturalHeight);
+            loader.onerror = () => done(1);
             loader.src = image.src;
-        });
+        };
+
+        for (let i = 0; i < LOAD_CONCURRENCY; i++) loadNext();
         return () => { cancelled = true; };
     }, [images]);
 
@@ -81,6 +85,7 @@ export default function ArtGallery({ folder, subfolder, years }: ArtGalleryProps
         [folder, subfolder, yearsKey]
     );
     const [selected, setSelected] = useState<ArtImage | null>(null);
+    const [loaded, setLoaded] = useState<Record<string, boolean>>({});
 
     useEffect(() => {
         const link = document.querySelector<HTMLLinkElement>("link[rel='icon']");
@@ -111,7 +116,24 @@ export default function ArtGallery({ folder, subfolder, years }: ArtGalleryProps
 
     const ratios = useAspectRatios(images);
     const empty = images.length === 0;
-    const ready = !empty && images.every((image) => ratios[image.src] !== undefined);
+    let readyCount = 0;
+    while (readyCount < images.length && ratios[images[readyCount].src] !== undefined) {
+        readyCount++;
+    }
+    const visible = images.slice(0, readyCount);
+    const loading = !empty && visible.length === 0;
+
+    const columnCount = 3;
+    const columns: ArtImage[][] = Array.from({ length: columnCount }, () => []);
+    const columnHeights = new Array(columnCount).fill(0);
+    for (const image of visible) {
+        let target = 0;
+        for (let c = 1; c < columnCount; c++) {
+            if (columnHeights[c] < columnHeights[target]) target = c;
+        }
+        columns[target].push(image);
+        columnHeights[target] += 1 / (ratios[image.src] || 1);
+    }
 
     return (
         <div className="w-full h-full overflow-y-auto relative">
@@ -120,26 +142,31 @@ export default function ArtGallery({ folder, subfolder, years }: ArtGalleryProps
                     no art :(
                 </div>
             )}
-            {!empty && !ready && (
+            {loading && (
                 <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                 </div>
             )}
-            <div className={`columns-3 gap-4 w-full transition-opacity duration-300 ${ready ? "opacity-100" : "opacity-0"}`}>
-                {images.map((image) => (
-                    <div
-                        key={image.src}
-                        className="group relative mb-4 break-inside-avoid cursor-pointer"
-                        onClick={() => setSelected(image)}
-                    >
-                        <img
-                            src={image.src}
-                            style={{ aspectRatio: ratios[image.src] }}
-                            className="w-full h-auto block"
-                        />
-                        <div className="absolute bottom-0 left-0 w-full bg-[#00000070] text-white px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                            {image.name}
-                        </div>
+            <div className="flex gap-4 w-full items-start">
+                {columns.map((column, columnIndex) => (
+                    <div key={columnIndex} className="flex-1 flex flex-col gap-4">
+                        {column.map((image) => (
+                            <div
+                                key={image.src}
+                                className="group relative break-inside-avoid cursor-pointer"
+                                onClick={() => setSelected(image)}
+                            >
+                                <img
+                                    src={image.src}
+                                    style={{ aspectRatio: ratios[image.src] }}
+                                    onLoad={() => setLoaded((prev) => ({ ...prev, [image.src]: true }))}
+                                    className={`w-full h-auto block ${loaded[image.src] ? "animate-fade-in opacity-100" : "opacity-0"}`}
+                                />
+                                <div className="absolute bottom-0 left-0 w-full bg-[#00000070] text-white px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    {image.name}
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 ))}
             </div>
