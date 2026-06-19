@@ -12,6 +12,8 @@ type ArtGalleryProps = {
     folder: string,
     subfolder?: string,
     years?: number | number[],
+    columns?: number,
+    gap?: number,
 }
 
 function matchesYears(name: string, years?: number | number[]): boolean {
@@ -77,7 +79,7 @@ function useAspectRatios(images: ArtImage[]): Record<string, number> {
     return ratios;
 }
 
-export default function ArtGallery({ folder, subfolder, years }: ArtGalleryProps) {
+export default function ArtGallery({ folder, subfolder, years, columns = 3, gap = 16 }: ArtGalleryProps) {
     const yearsKey = JSON.stringify(years);
     const images = useMemo(
         () => shuffle(getImages(folder, subfolder).filter((image) => matchesYears(image.name, years))),
@@ -123,15 +125,15 @@ export default function ArtGallery({ folder, subfolder, years }: ArtGalleryProps
     const visible = images.slice(0, readyCount);
     const loading = !empty && visible.length === 0;
 
-    const columnCount = 3;
-    const columns: ArtImage[][] = Array.from({ length: columnCount }, () => []);
+    const columnCount = Math.max(1, Math.floor(columns));
+    const columnItems: ArtImage[][] = Array.from({ length: columnCount }, () => []);
     const columnHeights = new Array(columnCount).fill(0);
     for (const image of visible) {
         let target = 0;
         for (let c = 1; c < columnCount; c++) {
             if (columnHeights[c] < columnHeights[target]) target = c;
         }
-        columns[target].push(image);
+        columnItems[target].push(image);
         columnHeights[target] += 1 / (ratios[image.src] || 1);
     }
 
@@ -147,9 +149,9 @@ export default function ArtGallery({ folder, subfolder, years }: ArtGalleryProps
                     <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                 </div>
             )}
-            <div className="flex gap-4 w-full items-start">
-                {columns.map((column, columnIndex) => (
-                    <div key={columnIndex} className="flex-1 flex flex-col gap-4">
+            <div className="flex w-full items-start" style={{ gap }}>
+                {columnItems.map((column, columnIndex) => (
+                    <div key={columnIndex} className="flex-1 flex flex-col" style={{ gap }}>
                         {column.map((image) => (
                             <div
                                 key={image.src}

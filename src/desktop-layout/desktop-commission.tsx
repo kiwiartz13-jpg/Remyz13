@@ -1,0 +1,92 @@
+import { MenuButton, type Button } from "../components/top-menu";
+import type { Page } from "../utils/parseImageConfig";
+
+import homeButtonImg from "../assets/homepage-menu-buttons/logo.png";
+import homeButtonGif from "../assets/homepage-menu-buttons/logo.gif";
+
+import banner from "../assets/commission-assets/banner.png";
+import moreInfo from "../assets/commission-assets/more-info.jpeg";
+import commissionSheet from "../assets/commission-assets/commission-sheet.png";
+import title from "../assets/commission-assets/artwork-title.png";
+import ArtGallery from "../components/art-gallery";
+import prices from "../prices.json";
+
+function Header({ button } : {button: Button}) {
+    return (
+        <div className="flex justify-between items-center w-full pl-5 pt-2 ">
+            <div className="flex flex-row gap-15">
+                <MenuButton {...button} />
+            </div>
+            <div className="flex justify-center w-full">
+                <img src={banner} style={{ height: 175}}/>
+            </div>
+        </div>
+    );
+}
+
+export default function DesktopCommission({ onNavigate }: { onNavigate: (screen: Page) => void; }) {
+    const homeButton: Button = {
+        onClick: () => onNavigate("home"),
+        img: homeButtonImg,
+        hoverImg: homeButtonGif,
+        w: 180,
+        h: 175
+    }
+
+    // Position each price individually as a PERCENT of the commission sheet image (0–100).
+    // Because these are %, they scale with the image. Tweak top/left per number to line up.
+    const pricePositions: Record<string, Record<string, { top: number; left: number }>> = {
+        headshot: {
+            sketch:  { top: 26.8, left: 28.2 },
+            lineart: { top: 30.6, left: 28.2 },
+            render:  { top: 34.8, left: 28.2 },
+        },
+        halfbody: {
+            sketch:  { top: 47.3, left: 27.5 },
+            lineart: { top: 51.4, left: 27.5 },
+            render:  { top: 55.8, left: 27.5 },
+        },
+        fullbody: {
+            sketch:  { top: 70.3, left: 27.7 },
+            lineart: { top: 73.7, left: 27.7 },
+            render:  { top: 77.3, left: 27.8 },
+        },
+    };
+
+    return (
+        <div className="flex flex-col overflow-y-auto h-full">
+            <Header button={homeButton}/>
+            <div className="flex flex-row gap-6 ml-10 mr-10 mt-6">
+                <div className="relative w-272 h-full" style={{ containerType: "inline-size" }}>
+                    <img className="w-full h-full" src={commissionSheet} />
+
+                    {Object.entries(prices).map(([category, tiers]) =>
+                        Object.entries(tiers).map(([tier, price]) => {
+                            const pos = pricePositions[category]?.[tier];
+                            if (!pos) return null;
+                            return (
+                                <div
+                                    key={`${category}-${tier}`}
+                                    className="absolute text-[#DB4F9F]  font-bold -translate-x-1/2 -translate-y-1/2"
+                                    style={{ top: `${pos.top}%`, left: `${pos.left}%`, fontSize: "2cqw", fontFamily: "'Patrick Hand'" }}
+                                >
+                                    ${price}
+                                </div>
+                            );
+                        })
+                    )}
+                </div>
+                <img className="w-175 h-full" src={moreInfo} />
+            </div>
+
+            <div className="flex-1 pb-6 w-180 pt-10">
+                <img src={title}/>
+            </div>
+
+            <div className="flex-1 p-10 pb-10">
+                <ArtGallery folder={"commission-art"} columns={4}/>
+            </div>
+        </div>
+    )
+    
+}

@@ -1,0 +1,17 @@
+{
+  "headshot": {
+    "sketch": 10,
+    "lineart": 20,
+    "render": 40
+  },
+  "halfbody": {
+    "sketch": 20,
+    "lineart": 30,
+    "render": 60
+  },
+  "fullbody": {
+    "sketch": 30,
+    "lineart": 40,
+    "render": 100
+  }
+}
