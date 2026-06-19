@@ -32,7 +32,7 @@ export default function HoverImgButton({ img, subImg, hoverImg, subImgConfig, im
                 <img
                     src={subImg}
                     style={{ position: "absolute", ...parseImageConfig(subImgConfig) }}
-                    className=" pointer-events-none"
+                    className="pointer-events-none"
                 />
             )}
         </>

@@ -10,9 +10,11 @@ import { useRef, useState } from "react";
 import type { Page } from "../utils/parseImageConfig";
 import ArtGallery from "../components/art-gallery";
 import { TopMenu } from "../components/top-menu";
+import { type YearFilter } from "../components/calender-button";
 
 export default function DesktopDigital({ onNavigate }: { onNavigate: (screen: Page) => void; }) {
     const [subfolder, setSubfolder] = useState<string | undefined>(undefined);
+    const [years, setYears] = useState<YearFilter | undefined>(undefined);
     const scrollRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -45,11 +47,12 @@ export default function DesktopDigital({ onNavigate }: { onNavigate: (screen: Pa
                         onRelease: () => setSubfolder(undefined)
                     },
                 ]}
-
+                calenderFilter={setYears}
+                calenderFilters={[[2021, 2023], 2024, 2025, 2026]}
             />
 
             <div className="flex-1 p-4 pb-6">
-                <ArtGallery folder="digital-art" subfolder={subfolder} />
+                <ArtGallery folder="digital-art" subfolder={subfolder} years={years} />
             </div>
             
             <div className="flex justify-center pb-8">
