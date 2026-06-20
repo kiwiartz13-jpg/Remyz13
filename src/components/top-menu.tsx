@@ -44,7 +44,7 @@ export function MenuButton({ onClick, onRelease, img, hoverImg, w = 175, h = 175
             {hoverImg && <img src={hoverImg} className="hidden" />}
             <img
                 src={hovered && hoverImg !== undefined ? hoverImg : img}
-                style={{ width: w, height: h }}
+                style={{ width: w, height: h, objectFit: "contain" }}
                 className={`${selected ? "scale-120" : "hover:scale-105"}`}
             />
         </button>

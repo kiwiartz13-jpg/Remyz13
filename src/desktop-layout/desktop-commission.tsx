@@ -29,12 +29,8 @@ export default function DesktopCommission({ onNavigate }: { onNavigate: (screen:
         onClick: () => onNavigate("home"),
         img: homeButtonImg,
         hoverImg: homeButtonGif,
-        w: 180,
-        h: 175
     }
 
-    // Position each price individually as a PERCENT of the commission sheet image (0–100).
-    // Because these are %, they scale with the image. Tweak top/left per number to line up.
     const pricePositions: Record<string, Record<string, { top: number; left: number }>> = {
         headshot: {
             sketch:  { top: 26.8, left: 28.2 },
@@ -56,9 +52,10 @@ export default function DesktopCommission({ onNavigate }: { onNavigate: (screen:
     return (
         <div className="flex flex-col overflow-y-auto h-full">
             <Header button={homeButton}/>
-            <div className="flex flex-row gap-6 ml-10 mr-10 mt-6">
-                <div className="relative w-272 h-full" style={{ containerType: "inline-size" }}>
-                    <img className="w-full h-full" src={commissionSheet} />
+            <div className="flex flex-row gap-6 ml-10 mr-10 mt-3 items-start">
+                <div className="relative" style={{ flex: "1087 1 0", containerType: "inline-size" }}>
+
+                    <img className="w-full h-auto block" src={commissionSheet} />
 
                     {Object.entries(prices).map(([category, tiers]) =>
                         Object.entries(tiers).map(([tier, price]) => {
@@ -76,11 +73,12 @@ export default function DesktopCommission({ onNavigate }: { onNavigate: (screen:
                         })
                     )}
                 </div>
-                <img className="w-175 h-full" src={moreInfo} />
+                <img className="w-full h-auto block" style={{ flex: "700 1 0" }} src={moreInfo} />
             </div>
 
-            <div className="flex-1 pb-6 w-180 pt-10">
-                <img src={title}/>
+            <div className="pb-3 flex pt-6 pl-10 pr-10">
+                <img className="w-full" src={title}/>
+                <div className="w-800 h-auto"></div>
             </div>
 
             <div className="flex-1 p-10 pb-10">
