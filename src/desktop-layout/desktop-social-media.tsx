@@ -8,7 +8,7 @@ import toyhouse from "../assets/social-media/toyhouse-icon.png"
 import youtube from "../assets/social-media/youtube-icon.png"
 
 import type { Page } from "../utils/parseImageConfig";
-import { MenuButton, TopMenu } from "../components/top-menu";
+import { MenuButton } from "../components/top-menu";
 
 type SocialMediaButtonProps = {
     icon: string,
@@ -23,7 +23,7 @@ function SocialMediaButton({
     return (
         <button
             onClick={() => window.open(url, "_blank", "noopener,noreferrer")}
-            className="relative w-full items-center flex cursor-pointer bg-[rgba(22,31,67,.75)] hover:bg-(--hover-color) hover:scale-105 transition-colors duration-300 ease-in-out"
+            className="relative w-full items-center flex cursor-pointer bg-[rgba(22,31,67,.75)] hover:bg-(--hover-color) hover:scale-103 transition-colors duration-300 ease-in-out"
             style={{ "--hover-color": hoverColor, height: "clamp(60px, 9.5vw, 152px)" } as React.CSSProperties}
         >
             <div className="absolute left-0 flex justify-start" style={{ width: "clamp(80px, 10vw, 160px)" }}>
@@ -42,7 +42,7 @@ function SocialMediaButton({
     )
 }
 
-export function DesktopSocialMedia({ onNavigate }: { onNavigate: (screen: Page) => void; }) {
+export default function DesktopSocialMedia({ onNavigate }: { onNavigate: (screen: Page) => void; }) {
 
     const homeButton = {
         img: homeImg,
