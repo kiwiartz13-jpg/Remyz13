@@ -65,7 +65,7 @@ export default function DesktopCommission({ onNavigate }: { onNavigate: (screen:
                                 <div
                                     key={`${category}-${tier}`}
                                     className="absolute text-[#DB4F9F]  font-bold -translate-x-1/2 -translate-y-1/2"
-                                    style={{ top: `${pos.top}%`, left: `${pos.left}%`, fontSize: "2cqw", fontFamily: "'Patrick Hand'" }}
+                                    style={{ top: `${pos.top}%`, left: `${pos.left}%`, fontSize: "2cqw", fontFamily: "'Patrick Hand SC'" }}
                                 >
                                     ${price}
                                 </div>

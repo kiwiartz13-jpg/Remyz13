@@ -6,8 +6,8 @@ export type Button = {
     onRelease?: () => void;
     img: string,
     hoverImg?: string
-    w?: number,
-    h?: number
+    w?: number | string,
+    h?: number | string
 }
 
 type TopMenuProps = {

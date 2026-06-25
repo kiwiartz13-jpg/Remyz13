@@ -6,6 +6,7 @@ import DesktopTraditional from './desktop-layout/desktop-traditional'
 import wallpaper from './assets/wallpaper.png'
 import type { Page } from './utils/parseImageConfig'
 import DesktopCommission from './desktop-layout/desktop-commission'
+import DesktopSocialMedia from './desktop-layout/desktop-social-media'
 
 export default function App() {
   const [scale, setScale] = useState(1);
@@ -38,6 +39,11 @@ export default function App() {
       {screen === 'commission' && (
         <div style={{ width: '100%', height: '100%' }}>
           <DesktopCommission onNavigate={setScreen} />
+        </div>
+      )}
+      {screen === 'social-media' && (
+        <div style={{ width: '100%', height: '100%' }}>
+          <DesktopSocialMedia onNavigate={setScreen} />
         </div>
       )}
     </div>
