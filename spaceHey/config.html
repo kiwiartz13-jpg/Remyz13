@@ -1,0 +1,393 @@
+<!--  These are my planets -->
+<div id="Planets">
+
+    <style>
+        #Planets {
+            background: url("https://64.media.tumblr.com/09b670123082d45a10b2a431b1138ce8/de79baa0a4f7ad1d-be/s1280x1920/a44b7cc996e4e0405dda32db3010b4052e92dd3f.gifv");
+            background-position: center;
+            background-repeat: repeat;
+            width: 600%;
+            height: 24px;
+            min-width: 1720px;
+            overflow: hidden;
+            position: fixed;
+            top: -0.9px;
+            left: 0px;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 1;
+        }
+    </style>
+</div>
+
+<!--  troll face cursor, or draw my own -->
+<style>
+    * {
+        cursor: url(https://cur.cursors-4u.net/smilies/smi-3/smi211.cur), auto !important;
+    }
+</style><a href="https://www.cursors-4u.com/cursor/2011/10/13/trollface-problem-coolface-rage-face-comics.html"
+    target="_blank" title="Trollface / Problem? / Coolface  - Rage Face Comics"><img
+        src="https://cur.cursors-4u.net/cursor.png" alt="Trollface / Problem? / Coolface  - Rage Face Comics"
+        style="position:absolute; top: 0px; right: 0px;" /></a>
+
+
+
+<div class="recordPlayer">
+    <img class="cd" src="https://i.postimg.cc/Dw4JHb1S/IMG-1807.png" />
+    <img class="cdCover" src="https://i.postimg.cc/Gpf8TjLG/ISMFOF.png" />
+</div>
+
+<!--  Aphex Twin snowflakes, make smaller -->
+
+<div class="snowflakes">
+    <div class="snowflake"><img src="https://i.postimg.cc/x1C3wtRt/IMG-3503.png" /></div>
+    <div class="snowflake"><img src="https://i.postimg.cc/x1C3wtRt/IMG-3503.png" /></div>
+    <div class="snowflake"><img src="https://i.postimg.cc/x1C3wtRt/IMG-3503.png" /></div>
+    <div class="snowflake"><img src="https://i.postimg.cc/x1C3wtRt/IMG-3503.png" /></div>
+    <div class="snowflake"><img src="https://i.postimg.cc/x1C3wtRt/IMG-3503.png" /></div>
+    <div class="snowflake"><img src="https://i.postimg.cc/x1C3wtRt/IMG-3503.png" /></div>
+    <div class="snowflake"><img src="https://i.postimg.cc/x1C3wtRt/IMG-3503.png" /></div>
+    <div class="snowflake"><img src="https://i.postimg.cc/x1C3wtRt/IMG-3503.png" /></div>
+</div>
+
+<style>
+    @-webkit-keyframes snowflakes-fall {
+        0% {
+            top: -10%
+        }
+
+        100% {
+            top: 100%
+        }
+    }
+
+    @-webkit-keyframes snowflakes-shake {
+
+        0%,
+        100% {
+            -webkit-transform: translateX(0);
+            transform: translateX(0)
+        }
+
+        50% {
+            -webkit-transform: translateX(80px);
+            transform: translateX(80px)
+        }
+    }
+
+    @keyframes snowflakes-fall {
+        0% {
+            top: -10%
+        }
+
+        100% {
+            top: 100%
+        }
+    }
+
+    @keyframes snowflakes-shake {
+
+        0%,
+        100% {
+            transform: translateX(0)
+        }
+
+        50% {
+            transform: translateX(80px)
+        }
+    }
+
+    .snowflake {
+        position: fixed;
+        top: -10%;
+        z-index: 9999;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: default;
+        -webkit-animation-name: snowflakes-fall, snowflakes-shake;
+        -webkit-animation-duration: 10s, 3s;
+        -webkit-animation-timing-function: linear, ease-in-out;
+        -webkit-animation-iteration-count: infinite, infinite;
+        -webkit-animation-play-state: running, running;
+        animation-name: snowflakes-fall, snowflakes-shake;
+        animation-duration: 10s, 3s;
+        animation-timing-function: linear, ease-in-out;
+        animation-iteration-count: infinite, infinite;
+        animation-play-state: running, running
+    }
+
+    .snowflake:nth-of-type(0) {
+        left: 1%;
+        -webkit-animation-delay: 0s, 0s;
+        animation-delay: 0s, 0s
+    }
+
+    .snowflake:nth-of-type(1) {
+        left: 10%;
+        -webkit-animation-delay: 1s, 1s;
+        animation-delay: 1s, 1s
+    }
+
+    .snowflake:nth-of-type(2) {
+        left: 20%;
+        -webkit-animation-delay: 6s, .5s;
+        animation-delay: 6s, .5s
+    }
+
+    .snowflake:nth-of-type(3) {
+        left: 30%;
+        -webkit-animation-delay: 4s, 2s;
+        animation-delay: 4s, 2s
+    }
+
+    .snowflake:nth-of-type(4) {
+        left: 40%;
+        -webkit-animation-delay: 2s, 2s;
+        animation-delay: 2s, 2s
+    }
+
+    .snowflake:nth-of-type(5) {
+        left: 50%;
+        -webkit-animation-delay: 8s, 3s;
+        animation-delay: 8s, 3s
+    }
+
+    .snowflake:nth-of-type(6) {
+        left: 60%;
+        -webkit-animation-delay: 6s, 2s;
+        animation-delay: 6s, 2s
+    }
+
+    .snowflake:nth-of-type(7) {
+        left: 70%;
+        -webkit-animation-delay: 2.5s, 1s;
+        animation-delay: 2.5s, 1s
+    }
+
+    .snowflake:nth-of-type(8) {
+        left: 80%;
+        -webkit-animation-delay: 1s, 0s;
+        animation-delay: 1s, 0s
+    }
+
+    .snowflake:nth-of-type(9) {
+        left: 90%;
+        -webkit-animation-delay: 3s, 1.5s;
+        animation-delay: 3s, 1.5s
+    }
+
+    .snowflake:nth-of-type(10) {
+        left: 25%;
+        -webkit-animation-delay: 2s, 0s;
+        animation-delay: 2s, 0s
+    }
+
+    .snowflake:nth-of-type(11) {
+        left: 65%;
+        -webkit-animation-delay: 4s, 2.5s;
+        animation-delay: 4s, 2.5s
+    }
+</style>
+
+<!--  PFP CD Cover r -->
+
+<style>
+    /* replace with cd image that has transparent background. must be 150px by 150px. */
+    :root {
+        --cd-image: url('https://fluorescent-lights.neocities.org/Digital-CD-Disk-Vector-Transparent-PNG.png');
+    }
+
+    .profile-pic {
+        position: relative;
+        width: 183px;
+        filter: drop-shadow(0 0 0.25rem gray);
+    }
+
+    .profile-pic:after {
+        content: "";
+        background: url('https://fluorescent-lights.neocities.org/f0rzNHe.png'), linear-gradient(150deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2), 40%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.6));
+        background-size: contain, cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .profile-pic:before {
+        content: "";
+        background: var(--cd-image);
+        position: absolute;
+        top: 5px;
+        left: -20px;
+        width: 150px;
+        height: 150px;
+        background-repeat: no-repeat;
+        z-index: -1;
+        animation-name: spin;
+        animation-duration: 5000ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        transition: left ease 0.5s;
+    }
+
+    .profile-pic:hover:before {
+        left: -75px;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .profile-pic .pfp-fallback {
+        float: right;
+        width: 163px;
+        height: 160px;
+        border: none;
+    }
+
+    .general-about .profile-pic img {
+        max-width: inherit;
+    }
+</style>
+
+<style>
+    @keyframes spin {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .recordPlayer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 20px;
+    }
+
+    .cd {
+        height: 150px;
+        margin-left: 55px;
+        padding: 10px;
+        animation: spin 1.88s linear infinite;
+        position: absolute;
+    }
+
+    .cdCover {
+        height: 150px;
+        position: relative;
+        z-index: 1;
+        margin-right: 55px;
+    }
+</style>
+
+
+<!-- Aphex twin spinning logo -->
+<div style="float:  ; max-height: 400px; position: fixed; left: 1px; top: 9px; z-index: 200;">
+    <img src="https://i.ibb.co/R3Dk47r/giphy.gif" width="200" height="200" />
+</div>
+<style></style>
+
+<!-- Eveelutions -->
+<style>
+    .profile .url-info p:last-child:after {
+        content: "";
+        display: block;
+        background-image: url(http://dl8.glitter-graphics.net/pub/497/497618zyi6oft0mg.gif);
+        width: auto;
+        height: 70px;
+        background-position: top center;
+        background-size: 60%;
+        background-repeat: no-repeat;
+    }
+
+    .profile .url-info p {
+        text-align: center;
+    }
+</style>
+
+
+<!-- DEVO -->
+<img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0b46c713-0195-4485-aa8e-e51fbae423e7/ddmw089-26c0043a-9711-4ed1-9b4a-fe31f0ca0899.png/v1/fill/w_99,h_55/devo_by_gorillazdotcom_ddmw089-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTUiLCJwYXRoIjoiXC9mXC8wYjQ2YzcxMy0wMTk1LTQ0ODUtYWE4ZS1lNTFmYmFlNDIzZTdcL2RkbXcwODktMjZjMDA0M2EtOTcxMS00ZWQxLTliNGEtZmUzMWYwY2EwODk5LnBuZyIsIndpZHRoIjoiPD05OSJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.oSZ_iMfklgwUOXx9tkmWSP9Aw5ypp3xMqgpC8mq3goE"/>
+
+<!-- Gorillaz Demon Days -->
+<img src="https://orig00.deviantart.net/157e/f/2014/241/d/3/gorillaz_stamp_by_kawaiicunt_stamps-d7x7wz6.gif"/>
+
+<!-- Murdoc -->
+<img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/255a67e1-4522-42fa-8ae7-bbd67f8be981/d91rg42-0150c7da-ef45-4dc1-878f-a0c2785c57d4.jpg/v1/fill/w_96,h_55,q_75,strp/murdoc_niccals_stamp_by_silver_shadowmoon88_d91rg42-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTUiLCJwYXRoIjoiXC9mXC8yNTVhNjdlMS00NTIyLTQyZmEtOGFlNy1iYmQ2N2Y4YmU5ODFcL2Q5MXJnNDItMDE1MGM3ZGEtZWY0NS00ZGMxLTg3OGYtYTBjMjc4NWM1N2Q0LmpwZyIsIndpZHRoIjoiPD05NiJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.wMYhLhXtGlARU4TB7Ql7LcfoUbdsOvB2ZXdxe_MVq88"/>
+
+<!-- Doge -->
+<img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/adaca15b-481a-461c-b1b0-e84da73bc2fa/dc61g3g-bcec2e06-32cf-47a1-a5bc-f114fad2756d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2FkYWNhMTViLTQ4MWEtNDYxYy1iMWIwLWU4NGRhNzNiYzJmYVwvZGM2MWczZy1iY2VjMmUwNi0zMmNmLTQ3YTEtYTViYy1mMTE0ZmFkMjc1NmQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Ec1DmCg-kC-mLlGBAofKKhGASJapUwgO8oki3o0RzLs"/>
+
+<!-- Dib -->
+<a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/yxdNncBq/E09-D5-BD8-AE9-E-4-D7-B-9-A8-E-0-ED38439-E1-F9.gif" alt="E09-D5-BD8-AE9-E-4-D7-B-9-A8-E-0-ED38439-E1-F9"/></a><br/><a href="https://postimages.org/">bb image hosting</a><br/>
+
+<!-- I luv MC -->
+<img src="https://i.ibb.co/qgknzZ7/d5dikpa-3055b6ad-7745-4251-913f-dc87b231e9b1.png"/> 
+
+<!-- ask my abt my OCs -->
+<img src="https://i.ibb.co/1JYJJDB/60eb2754.gif"/> 
+
+<!-- :D -->
+<img src="https://external-media.spacehey.net/media/sm3j6pUsCQKiqcGfgYBXaMAPZg4rXl93Odm-9AsJhpDw=/https://i.ibb.co/tpMh97t/b1.png" width="150" height="70"/>
+
+<!-- add more -->
+
+<!-- mr bungle -->
+<img src="https://i.postimg.cc/JnNmYVFQ/mrbunglecali01.png"/>
+
+<!-- ideas -->
+<img src="https://adriansblinkiecollection.neocities.org/stamps/j5.png"/>
+
+<!-- plants -->
+<img src="https://laboratory.neocities.org/stamps/green/45.png"/>
+
+<!-- lemdem -->
+<img src="https://adriansblinkiecollection.neocities.org/stamps/d22.png"/>
+
+<!-- machine girl -->
+<img src="https://gligar.neocities.org/mhngirl.gif"/>
+
+<!-- femtanyl -->
+<img src="https://64.media.tumblr.com/de4e776e663cf61db487964e24e3338f/be1680ec31d0207c-58/s100x200/aa938c5f9397975d5c3008fe7035c6f1f07e8c64.gifv"/>
+
+<!-- LPS -->
+<img src="https://external-media.spacehey.net/media/sUPl3rWD61BmmlCmhBvkSh1b3f_hCMNJyC353BpP1k88=/https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/a5386b25-8f5a-4fdd-b60f-49e424752f03/d274kv5-831ffe99-3ef8-435f-9995-3506619a93b9.gif"/>
+
+<!-- spikes -->
+<img src="https://i.ibb.co/yfkCgsZ/IHeart-Spikes.gif" width="99" height="56"/>
+
+<!-- gir -->
+<img src="https://i.ibb.co/nD9npQQ/Gir.gif" width="99" height="56"/>
+
+<!-- gorillaz -->
+<img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6f02c764-d0ae-4301-bc0c-106042ec18af/d7mmkls-9e0add86-36e7-4ead-aa4f-9e6ee035b9cf.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzZmMDJjNzY0LWQwYWUtNDMwMS1iYzBjLTEwNjA0MmVjMThhZlwvZDdtbWtscy05ZTBhZGQ4Ni0zNmU3LTRlYWQtYWE0Zi05ZTZlZTAzNWI5Y2YucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.wc1kCSReldZb-2t0k7LOsf3YjEdfYbULEMwEatNJx2k"/>
+
+<!-- murdoc 1 -->
+<img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1d3ae2df-577a-40f5-9d78-dd9449bfa142/d2mrvpm-4e5af059-9c88-49a8-9365-7647c29b6158.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzFkM2FlMmRmLTU3N2EtNDBmNS05ZDc4LWRkOTQ0OWJmYTE0MlwvZDJtcnZwbS00ZTVhZjA1OS05Yzg4LTQ5YTgtOTM2NS03NjQ3YzI5YjYxNTgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.vHR3p-aQHVhOm02wtKxwqn0J-wnDMv31EtnUTc2IsGk"/>
+
+<!-- melancholy hill -->
+<img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/51126e6b-12d9-4f7f-8722-c901fdc051b3/d6d7qdk-3dc96521-819f-407e-b6f8-9ead9131d84c.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzUxMTI2ZTZiLTEyZDktNGY3Zi04NzIyLWM5MDFmZGMwNTFiM1wvZDZkN3Fkay0zZGM5NjUyMS04MTlmLTQwN2UtYjZmOC05ZWFkOTEzMWQ4NGMuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Yk147ga3pXjQ4jpMa9SJRjR2Bg7QCMyorhE3RCKYY6k"/>
+
+<!-- roly poly -->
+<img src="https://paleking.carrd.co/assets/images/gallery08/799dfda2.png?v26071698921061"/>
+
+<!-- shiny beetle -->
+<img src="https://paleking.carrd.co/assets/images/gallery07/3522bf26.png?v26071698921061"/>
+
+<!-- free ipod trick -->
+<a href="https://youtu.be/gZEUI3udNHg?si=T2MHpg8ptDbWJuEP"><img src="https://i.postimg.cc/5yDD4RqL/IMG-0467.jpg" alt="CLICK NOW!!"/></a>
+
+<!-- invader zim logo -->
+<img src="https://i.gifer.com/origin/10/10117d927b79b6ce599a80dbfd939f39_w200.webp"/>
+
+
+
