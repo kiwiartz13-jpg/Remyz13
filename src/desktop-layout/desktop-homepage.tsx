@@ -62,7 +62,7 @@ export default function DesktopHomepage({ onNavigate }: { onNavigate: (page: Pag
                 hoverImg={shopGif}
                 imgConfig={shopCss}
                 subImgConfig={shopTextCss}
-                onClick={() => {}}
+                onClick={() => onNavigate("commission")}
             />
             <HoverImgButton
                 img={socialMediaStill}
@@ -70,7 +70,7 @@ export default function DesktopHomepage({ onNavigate }: { onNavigate: (page: Pag
                 hoverImg={socialMediaGif}
                 imgConfig={socialMediaCss}
                 subImgConfig={socialMediaTextCss}
-                onClick={() => {}}
+                onClick={() => onNavigate("social-media")}
             />
             <HoverImgButton
                 img={traditionalStill}

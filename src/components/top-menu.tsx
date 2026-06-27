@@ -1,20 +1,18 @@
 import { useState } from "react";
 import CalenderButton, { type YearFilter } from "./calender-button";
 
-type Button = {
+export type Button = {
     onClick: () => void;
     onRelease?: () => void;
     img: string,
     hoverImg?: string
-    w?: number,
-    h?: number
+    w?: number | string,
+    h?: number | string
 }
 
 type TopMenuProps = {
     homeButton: Button,
     menuButtons: Button[],
-    // Wire up the calendar button to filter the gallery by year.
-    // When omitted, the calendar button is not shown.
     calenderFilter?: (years: YearFilter | undefined) => void,
     calenderFilters?: [YearFilter, YearFilter, YearFilter, YearFilter],
 }
@@ -24,7 +22,7 @@ type MenuButtonProps = Button & {
     onToggle?: () => void,
 }
 
-function MenuButton({ onClick, onRelease, img, hoverImg, w = 175, h = 175, selected = false, onToggle }: MenuButtonProps) {
+export function MenuButton({ onClick, onRelease, img, hoverImg, w = 175, h = 175, selected = false, onToggle }: MenuButtonProps) {
     const [hovered, setHovered] = useState(false);
 
     const handleClick = () => {
@@ -46,7 +44,7 @@ function MenuButton({ onClick, onRelease, img, hoverImg, w = 175, h = 175, selec
             {hoverImg && <img src={hoverImg} className="hidden" />}
             <img
                 src={hovered && hoverImg !== undefined ? hoverImg : img}
-                style={{ width: w, height: h }}
+                style={{ width: w, height: h, objectFit: "contain" }}
                 className={`${selected ? "scale-120" : "hover:scale-105"}`}
             />
         </button>
