@@ -54,10 +54,10 @@ export default function DesktopSocialMedia({ onNavigate }: { onNavigate: (screen
 
     return (
         <div className="flex flex-col w-full h-full overflow-y-auto">
-            <div className="absolute pl-5 pt-2">
+            <div className="static min-[1056px]:absolute self-start pl-5 pt-2">
                 <MenuButton {...homeButton} />
             </div>
-            <div className="flex pt-7 flex-col gap-7" style={{ paddingLeft: "clamp(20px, 20.8vw, 400px)", paddingRight: "clamp(20px, 20.8vw, 400px)" }}>
+            <div className="flex pt-7 flex-col gap-7" style={{ paddingLeft: "max(16px, 31.25vw - 200px)", paddingRight: "max(16px, 31.25vw - 200px)" }}>
                 <SocialMediaButton icon={insta} text={"Instagram"} hoverColor="#99b11f" url={"https://www.instagram.com/remyz13"}/>
                 <SocialMediaButton icon={youtube} text={"YouTube"} hoverColor="#00A56A" url={"https://www.youtube.com/@remyz13"}/>
                 <SocialMediaButton icon={artfight} text={"ArtFight"} hoverColor="#087791" url={"https://artfight.net/~%D0%AFemy"}/>

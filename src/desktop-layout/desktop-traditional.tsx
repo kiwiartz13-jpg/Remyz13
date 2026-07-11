@@ -66,7 +66,7 @@ export default function DesktopTraditional({ onNavigate }: { onNavigate: (screen
                     onClick={() => scrollRef.current?.scrollTo({ top: 0, behavior: "smooth" })}
                     className="border-0 bg-transparent p-0 cursor-pointer"
                 >
-                    <img src={homeImg} className="w-43 h-auto hover:scale-103" />
+                    <img src={homeImg} className="h-auto hover:scale-103" style={{ width: "clamp(60px, 13.5vw, 172px)" }} />
                 </button>
             </div>
 

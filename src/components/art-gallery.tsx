@@ -1,6 +1,24 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 
-const artModules = import.meta.glob("../art/*/*/*", {
+const srcsetModules = import.meta.glob("../art/*/*/*.{jpg,JPG,jpeg,JPEG,png,PNG}", {
+    eager: true,
+    query: "?w=400;800;1600&format=webp&as=srcset",
+    import: "default",
+}) as Record<string, string>;
+
+const lowResModules = import.meta.glob("../art/*/*/*.{jpg,JPG,jpeg,JPEG,png,PNG}", {
+    eager: true,
+    query: "?w=64&format=webp&quality=50",
+    import: "default",
+}) as Record<string, string>;
+
+const metaModules = import.meta.glob(["../art/*/*/*.{jpg,JPG,jpeg,JPEG,png,PNG}", "../art/*/*/*.{gif,GIF}"], {
+    eager: true,
+    query: "?as=metadata:width;height",
+    import: "default",
+}) as Record<string, { width: number; height: number }>;
+
+const gifModules = import.meta.glob("../art/*/*/*.{gif,GIF}", {
     eager: true,
     query: "?url",
     import: "default",
@@ -32,52 +50,103 @@ function shuffle<T>(items: T[]): T[] {
 }
 
 type ArtImage = {
-    src: string,
+    path: string,
     name: string,
+    width: number,
+    height: number,
+    ratio: number,
+    srcset?: string,
+    lowSrc?: string,
+    fullSrc: string,
 }
+
+function largestFromSrcset(srcset: string): string {
+    const last = srcset.split(",").pop()!.trim();
+    return last.split(/\s+/)[0];
+}
+
+const allImages: ArtImage[] = Object.entries(metaModules).map(([path, meta]) => {
+    const srcset = srcsetModules[path];
+    const hasDimensions = meta && typeof meta.width === "number" && typeof meta.height === "number";
+    return {
+        path,
+        name: path.split("/").pop()!.replace(IMAGE_EXTENSIONS, "").replaceAll("_", " ").trim(),
+        width: hasDimensions ? meta.width : 1,
+        height: hasDimensions ? meta.height : 1,
+        ratio: hasDimensions ? meta.width / meta.height : 1,
+        srcset,
+        lowSrc: lowResModules[path],
+        fullSrc: srcset ? largestFromSrcset(srcset) : gifModules[path],
+    };
+});
 
 function getImages(folder: string, subfolder?: string): ArtImage[] {
-    return Object.entries(artModules)
-        .filter(([path]) => {
-            if (!IMAGE_EXTENSIONS.test(path)) return false;
-            const [, , pathFolder, pathSubfolder] = path.split("/");
-            return pathFolder === folder && (subfolder === undefined || pathSubfolder === subfolder);
-        })
-        .map(([path, url]) => ({
-            src: url,
-            name: path.split("/").pop()!.replace(IMAGE_EXTENSIONS, "").replaceAll("_", " ").trim(),
-        }));
+    return allImages.filter((image) => {
+        const [, , pathFolder, pathSubfolder] = image.path.split("/");
+        return pathFolder === folder && (subfolder === undefined || pathSubfolder === subfolder);
+    });
 }
 
-const LOAD_CONCURRENCY = 4;
-
-function useAspectRatios(images: ArtImage[]): Record<string, number> {
-    const [ratios, setRatios] = useState<Record<string, number>>({});
+function useContainerWidth(): [React.RefObject<HTMLDivElement | null>, number] {
+    const ref = useRef<HTMLDivElement | null>(null);
+    const [width, setWidth] = useState(0);
 
     useEffect(() => {
-        let cancelled = false;
-        let next = 0;
+        const el = ref.current;
+        if (!el) return;
+        const observer = new ResizeObserver((entries) => {
+            setWidth(entries[0].contentRect.width);
+        });
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
 
-        const loadNext = () => {
-            if (cancelled || next >= images.length) return;
-            const image = images[next++];
-            const loader = new Image();
-            const done = (ratio: number) => {
-                if (cancelled) return;
-                setRatios((prev) => ({ ...prev, [image.src]: ratio }));
-                loadNext();
-            };
-            loader.onload = () => done(loader.naturalWidth / loader.naturalHeight);
-            loader.onerror = () => done(1);
-            loader.src = image.src;
-        };
-
-        for (let i = 0; i < LOAD_CONCURRENCY; i++) loadNext();
-        return () => { cancelled = true; };
-    }, [images]);
-
-    return ratios;
+    return [ref, width];
 }
+
+function ProgressiveImage({ image, sizes, eager, onClick }: {
+    image: ArtImage,
+    sizes: string,
+    eager: boolean,
+    onClick: () => void,
+}) {
+    const [loaded, setLoaded] = useState(false);
+
+    return (
+        <div
+            className="group relative cursor-pointer overflow-hidden"
+            style={{ aspectRatio: image.ratio }}
+            onClick={onClick}
+        >
+            {image.lowSrc && !loaded && (
+                <img
+                    src={image.lowSrc}
+                    alt=""
+                    aria-hidden
+                    className="absolute inset-0 w-full h-full object-cover"
+                />
+            )}
+            <img
+                src={image.fullSrc}
+                srcSet={image.srcset}
+                sizes={image.srcset ? sizes : undefined}
+                width={image.width}
+                height={image.height}
+                loading={eager ? "eager" : "lazy"}
+                fetchPriority={eager ? "high" : undefined}
+                decoding="async"
+                alt={image.name}
+                onLoad={() => setLoaded(true)}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`}
+            />
+            <div className="absolute bottom-0 left-0 w-full bg-[#00000070] text-white px-2 py-1 opacity-0 group-hover:opacity-100 pointer-coarse:opacity-100 transition-opacity">
+                {image.name}
+            </div>
+        </div>
+    );
+}
+
+const MOBILE_BREAKPOINT = 768;
 
 export default function ArtGallery({ folder, subfolder, years, columns = 3, gap = 16 }: ArtGalleryProps) {
     const yearsKey = JSON.stringify(years);
@@ -87,7 +156,7 @@ export default function ArtGallery({ folder, subfolder, years, columns = 3, gap 
         [folder, subfolder, yearsKey]
     );
     const [selected, setSelected] = useState<ArtImage | null>(null);
-    const [loaded, setLoaded] = useState<Record<string, boolean>>({});
+    const [containerRef, containerWidth] = useContainerWidth();
 
     useEffect(() => {
         const link = document.querySelector<HTMLLinkElement>("link[rel='icon']");
@@ -106,7 +175,7 @@ export default function ArtGallery({ folder, subfolder, years, columns = 3, gap 
                 ctx.drawImage(img, 0, 0, 64, 64);
                 link.href = canvas.toDataURL("image/png");
             };
-            img.src = selected.src;
+            img.src = selected.fullSrc;
         }, 150);
 
         return () => {
@@ -116,68 +185,61 @@ export default function ArtGallery({ folder, subfolder, years, columns = 3, gap 
         };
     }, [selected]);
 
-    const ratios = useAspectRatios(images);
     const empty = images.length === 0;
-    let readyCount = 0;
-    while (readyCount < images.length && ratios[images[readyCount].src] !== undefined) {
-        readyCount++;
-    }
-    const visible = images.slice(0, readyCount);
-    const loading = !empty && visible.length === 0;
 
-    const columnCount = Math.max(1, Math.floor(columns));
+    const maxColumns = Math.max(1, Math.floor(columns));
+    const columnCount = containerWidth < MOBILE_BREAKPOINT
+        ? Math.min(2, maxColumns)
+        : maxColumns;
+    const tileWidth = (containerWidth - gap * (columnCount - 1)) / columnCount;
+    const sizes = `${Math.max(1, Math.round(tileWidth))}px`;
+
     const columnItems: ArtImage[][] = Array.from({ length: columnCount }, () => []);
     const columnHeights = new Array(columnCount).fill(0);
-    for (const image of visible) {
+    for (const image of images) {
         let target = 0;
         for (let c = 1; c < columnCount; c++) {
             if (columnHeights[c] < columnHeights[target]) target = c;
         }
         columnItems[target].push(image);
-        columnHeights[target] += 1 / (ratios[image.src] || 1);
+        columnHeights[target] += 1 / image.ratio;
     }
 
     return (
-        <div className="w-full h-full overflow-y-auto relative">
+        <div ref={containerRef} className="w-full h-full overflow-y-auto relative">
             {empty && (
                 <div className="absolute inset-0 flex items-center justify-center text-white/60">
                     no art :(
                 </div>
             )}
-            {loading && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            {containerWidth > 0 && (
+                <div className="flex w-full items-start" style={{ gap }}>
+                    {columnItems.map((column, columnIndex) => (
+                        <div key={columnIndex} className="flex-1 flex flex-col" style={{ gap }}>
+                            {column.map((image, itemIndex) => (
+                                <ProgressiveImage
+                                    key={image.path}
+                                    image={image}
+                                    sizes={sizes}
+                                    eager={itemIndex === 0}
+                                    onClick={() => setSelected(image)}
+                                />
+                            ))}
+                        </div>
+                    ))}
                 </div>
             )}
-            <div className="flex w-full items-start" style={{ gap }}>
-                {columnItems.map((column, columnIndex) => (
-                    <div key={columnIndex} className="flex-1 flex flex-col" style={{ gap }}>
-                        {column.map((image) => (
-                            <div
-                                key={image.src}
-                                className="group relative break-inside-avoid cursor-pointer"
-                                onClick={() => setSelected(image)}
-                            >
-                                <img
-                                    src={image.src}
-                                    style={{ aspectRatio: ratios[image.src] }}
-                                    onLoad={() => setLoaded((prev) => ({ ...prev, [image.src]: true }))}
-                                    className={`w-full h-auto block ${loaded[image.src] ? "animate-fade-in opacity-100" : "opacity-0"}`}
-                                />
-                                <div className="absolute bottom-0 left-0 w-full bg-[#00000070] text-white px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    {image.name}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                ))}
-            </div>
             {selected && (
                 <div
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md animate-fade-in cursor-pointer"
                     onClick={() => setSelected(null)}
                 >
-                    <img src={selected.src} className="max-w-[90vw] max-h-[90vh] animate-lightbox-in" />
+                    <img
+                        src={selected.fullSrc}
+                        srcSet={selected.srcset}
+                        sizes="90vw"
+                        className="max-w-[90vw] max-h-[90vh] animate-lightbox-in"
+                    />
                 </div>
             )}
         </div>

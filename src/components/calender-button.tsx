@@ -48,7 +48,8 @@ export default function CalenderButton({ filter, filters }: CalenderButtonProps)
 
     return (
         <div
-            className="border-0 p-0 relative h-30 w-40 z-40 hover:scale-104"
+            className="border-0 p-0 relative z-40 hover:scale-104"
+            style={{ width: 160, minWidth: 0, aspectRatio: "4 / 3" }}
         >
             <video
                 ref={forwardsVid}
@@ -57,7 +58,7 @@ export default function CalenderButton({ filter, filters }: CalenderButtonProps)
                 playsInline
                 preload="auto"
                 onEnded={() => setPhase((p) => p === "opening" ? "end" : p)}
-                className={`absolute top-0 left-0 ${phase === "opening" ? "opacity-100" : "opacity-0"} `}
+                className={`absolute top-0 left-0 w-full h-auto ${phase === "opening" ? "opacity-100" : "opacity-0"} `}
             />
             <video
                 ref={reversedVid}
@@ -66,57 +67,61 @@ export default function CalenderButton({ filter, filters }: CalenderButtonProps)
                 playsInline
                 preload="auto"
                 onEnded={() => setPhase((p) => p === "closing" ? "start" : p)}
-                className={`absolute top-0 left-0 ${phase === "closing" ? "opacity-100" : "opacity-0"} `}
+                className={`absolute top-0 left-0 w-full h-auto ${phase === "closing" ? "opacity-100" : "opacity-0"} `}
             />
             <img
                 src={calenderStart}
-                className={`absolute top-0 left-0 ${phase === "start" ? "opacity-100" : "opacity-0"} `}
+                className={`absolute top-0 left-0 w-full h-auto ${phase === "start" ? "opacity-100" : "opacity-0"} `}
             />
             <img
                 src={calenderEnd}
-                className={`absolute top-0 left-0 ${phase === "end" ? "opacity-100" : "opacity-0"} `}
+                className={`absolute top-0 left-0 w-full h-auto ${phase === "end" ? "opacity-100" : "opacity-0"} `}
             />
             <img
                 src={one}
-                className={`absolute top-0 left-0 ${phase === "one" ? "opacity-100" : "opacity-0"}  `}
+                className={`absolute top-0 left-0 w-full h-auto ${phase === "one" ? "opacity-100" : "opacity-0"}  `}
             />
             <img
                 src={two}
-                className={`absolute top-0 left-0 ${phase === "two" ? "opacity-100 cursor-pointer" : "opacity-0"} `}
+                className={`absolute top-0 left-0 w-full h-auto ${phase === "two" ? "opacity-100 cursor-pointer" : "opacity-0"} `}
             />
             <img
                 src={three}
-                className={`absolute top-0 left-0 ${phase === "three" ? "opacity-100 cursor-pointer" : "opacity-0"} `}
+                className={`absolute top-0 left-0 w-full h-auto ${phase === "three" ? "opacity-100 cursor-pointer" : "opacity-0"} `}
             />
             <img
                 src={four}
-                className={`absolute top-0 left-0 ${phase === "four" ? "opacity-100 cursor-pointer" : "opacity-0"} `}
+                className={`absolute top-0 left-0 w-full h-auto ${phase === "four" ? "opacity-100 cursor-pointer" : "opacity-0"} `}
             />
-            <button className="absolute top-0 left-0 w-full h-28 cursor-pointer" onClick={handleClick} >
+            <button className="absolute top-0 left-0 w-full cursor-pointer" style={{ aspectRatio: "10 / 7" }} onClick={handleClick} >
 
             </button>
             {showButtons && (
-                <div className="absolute top-28 left-0 w-full">
+                <div className="absolute left-0 w-full" style={{ top: "93.33%" }}>
                     <button
-                        className="block w-full h-8 cursor-pointer"
+                        className="block w-full cursor-pointer"
+                        style={{ aspectRatio: "5 / 1" }}
                         onClick={() => select("one", filters[0])}
                     >
 
                     </button>
                     <button
-                        className="block w-full h-8 cursor-pointer"
+                        className="block w-full cursor-pointer"
+                        style={{ aspectRatio: "5 / 1" }}
                         onClick={() => select("two", filters[1])}
                     >
 
                     </button>
                     <button
-                        className="block w-full h-8 cursor-pointer"
+                        className="block w-full cursor-pointer"
+                        style={{ aspectRatio: "5 / 1" }}
                         onClick={() => select("three", filters[2])}
                     >
 
                     </button>
                     <button
-                        className="block w-full h-8 cursor-pointer"
+                        className="block w-full cursor-pointer"
+                        style={{ aspectRatio: "5 / 1" }}
                         onClick={() => select("four", filters[3])}
                     >
 
