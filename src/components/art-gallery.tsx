@@ -139,7 +139,11 @@ function ProgressiveImage({ image, sizes, eager, onClick }: {
                 onLoad={() => setLoaded(true)}
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`}
             />
-            <div className="absolute bottom-0 left-0 w-full bg-[#00000070] text-white px-2 py-1 opacity-0 group-hover:opacity-100 pointer-coarse:opacity-100 transition-opacity">
+            <div className="
+                absolute bottom-0 left-0 w-full bg-[#00000070] text-white px-2 py-1
+                opacity-0 group-hover:opacity-100 pointer-coarse:opacity-100
+                transition-opacity text-sm max-[400px]:text-[9px]"
+            >
                 {image.name}
             </div>
         </div>

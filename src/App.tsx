@@ -8,12 +8,19 @@ import type { Page } from './utils/parseImageConfig'
 import DesktopCommission from './desktop-layout/desktop-commission'
 import DesktopSocialMedia from './desktop-layout/desktop-social-media'
 
+const HOME_CONTENT_W = 1350;
+const HOME_CONTENT_H = 1005;
+
 export default function App() {
   const [scale, setScale] = useState(1);
   const [screen, setScreen] = useState<Page>("home");
 
   useEffect(() => {
-    const update = () => setScale(Math.min(window.innerWidth / 1920, window.innerHeight / 1080));
+    const update = () => setScale(Math.min(
+      1,
+      window.innerWidth / HOME_CONTENT_W,
+      window.innerHeight / HOME_CONTENT_H,
+    ));
     update();
     window.addEventListener('resize', update);
     return () => window.removeEventListener('resize', update);

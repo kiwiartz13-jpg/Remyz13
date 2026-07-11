@@ -73,7 +73,7 @@ export default function DesktopCommission({ onNavigate }: { onNavigate: (screen:
                         })
                     )}
                 </div>
-                <img className="w-full h-auto block max-w-140 md:max-w-none md:flex-[700_1_0]" src={moreInfo} />
+                <img className="w-full h-auto block min-w-0 max-w-140 md:max-w-full md:flex-[700_1_0]" src={moreInfo} />
             </div>
 
             <div className="pb-3 flex pt-6 pl-4 pr-4 md:pl-10 md:pr-10">
