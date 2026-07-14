@@ -18,9 +18,10 @@ const metaModules = import.meta.glob(["../art/*/*/*.{jpg,JPG,jpeg,JPEG,png,PNG}"
     import: "default",
 }) as Record<string, { width: number; height: number }>;
 
+// No query: any query string (even ?url) routes the import through vite-imagetools,
+// which re-encodes with sharp and keeps only the first frame of animated GIFs.
 const gifModules = import.meta.glob("../art/*/*/*.{gif,GIF}", {
     eager: true,
-    query: "?url",
     import: "default",
 }) as Record<string, string>;
 
