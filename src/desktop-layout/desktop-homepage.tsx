@@ -40,7 +40,7 @@ export default function DesktopHomepage({ onNavigate }: { onNavigate: (page: Pag
                 hoverImg={aboutMeGif}
                 imgConfig={aboutMeCss}
                 subImgConfig={aboutMeTextCss}
-                onClick={() => {}}
+                onClick={() => onNavigate("about-me")}
             />
             <HoverImgButton
                 img={digitalStill}
