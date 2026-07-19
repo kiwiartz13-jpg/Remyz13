@@ -4,7 +4,7 @@ position: absolute;
 width: 394.65px;
 height: 404.86px;
 left: calc(50% - 414.65px/2 - 363.675px);
-top: calc(50% - 420.86px/2 - 357.57px);
+top: calc(50% - 375px/2 - 357.57px);
 
 background: url(IMG_7444.png);
 transform: rotate(19.64deg);

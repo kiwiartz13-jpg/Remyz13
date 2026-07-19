@@ -6,7 +6,7 @@ import homeButtonGif from "../assets/homepage-menu-buttons/logo.gif";
 
 import banner from "../assets/commission-assets/banner.png";
 import moreInfo from "../assets/commission-assets/more-info.jpeg";
-import commissionSheet from "../assets/commission-assets/commission-sheet.png";
+import commissionSheet from "../assets/commission-assets/commission-sheet.webp";
 import title from "../assets/commission-assets/artwork-title.png";
 import ArtGallery from "../components/art-gallery";
 import prices from "../prices.json";
@@ -18,7 +18,7 @@ function Header({ button } : {button: Button}) {
                 <MenuButton {...button} />
             </div>
             <div className="flex justify-center w-full">
-                <img src={banner} style={{ height: 175}}/>
+                <img src={banner} className="h-auto" style={{ maxWidth: "min(100%, 866px)" }}/>
             </div>
         </div>
     );
@@ -52,8 +52,8 @@ export default function DesktopCommission({ onNavigate }: { onNavigate: (screen:
     return (
         <div className="flex flex-col overflow-y-auto h-full">
             <Header button={homeButton}/>
-            <div className="flex flex-row gap-6 ml-10 mr-10 mt-3 items-start">
-                <div className="relative" style={{ flex: "1087 1 0", containerType: "inline-size" }}>
+            <div className="flex flex-col items-center md:flex-row md:items-start gap-6 mx-4 md:mx-10 mt-3">
+                <div className="relative w-full max-w-140 md:max-w-none md:flex-[1087_1_0]" style={{ containerType: "inline-size" }}>
 
                     <img className="w-full h-auto block" src={commissionSheet} />
 
@@ -73,12 +73,11 @@ export default function DesktopCommission({ onNavigate }: { onNavigate: (screen:
                         })
                     )}
                 </div>
-                <img className="w-full h-auto block" style={{ flex: "700 1 0" }} src={moreInfo} />
+                <img className="w-full h-auto block min-w-0 max-w-140 md:max-w-full md:flex-[700_1_0]" src={moreInfo} />
             </div>
 
-            <div className="pb-3 flex pt-6 pl-10 pr-10">
-                <img className="w-full" src={title}/>
-                <div className="w-800 h-auto"></div>
+            <div className="pb-3 flex pt-6 pl-4 pr-4 md:pl-10 md:pr-10">
+                <img className="h-auto" style={{ width: "clamp(220px, 35%, 700px)" }} src={title}/>
             </div>
 
             <div className="flex-1 p-10 pb-10">

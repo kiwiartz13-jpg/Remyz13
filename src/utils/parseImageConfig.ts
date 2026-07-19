@@ -1,6 +1,6 @@
 import type { ImageConfig } from "../components/hover-img-button";
 
-export type Page = "home" | "digital" | "traditional" | "commission" | "social-media";
+export type Page = "home" | "digital" | "traditional" | "commission" | "social-media" | "about-me";
 
 const ALLOWED = new Set([
     "width", "height",

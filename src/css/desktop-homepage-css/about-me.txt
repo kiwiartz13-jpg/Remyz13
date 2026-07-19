@@ -4,7 +4,7 @@ position: absolute;
 width: 350px;
 height: 360px;
 left: calc(50% - 350px/2 - 358px);
-top: calc(50% - 360px/2 - 370px);
+top: calc(50% - 315px/2 - 370px);
 
 background: url(About Me Still.png);
 transform: rotate(28.6deg);

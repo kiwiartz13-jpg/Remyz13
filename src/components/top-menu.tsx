@@ -44,7 +44,7 @@ export function MenuButton({ onClick, onRelease, img, hoverImg, w = 175, h = 175
             {hoverImg && <img src={hoverImg} className="hidden" />}
             <img
                 src={hovered && hoverImg !== undefined ? hoverImg : img}
-                style={{ width: w, height: h, objectFit: "contain" }}
+                style={{ width: w, height: "auto", maxHeight: h, objectFit: "contain" }}
                 className={`${selected ? "scale-120" : "hover:scale-105"}`}
             />
         </button>
@@ -56,7 +56,7 @@ export function TopMenu({ homeButton, menuButtons, calenderFilter, calenderFilte
 
     return (
         <div className="flex justify-between items-center w-full pl-5 pt-2 ">
-            <div className="flex flex-row gap-15">
+            <div className="flex flex-row items-center" style={{ gap: "clamp(12px, 3.125vw, 60px)" }}>
                 <MenuButton {...homeButton} />
                 {calenderFilter && calenderFilters && (
                     <CalenderButton filter={calenderFilter} filters={calenderFilters} />
