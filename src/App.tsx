@@ -3,7 +3,8 @@ import './App.css'
 import DesktopHomepage from './desktop-layout/desktop-homepage'
 import DesktopDigital from './desktop-layout/desktop-digital'
 import DesktopTraditional from './desktop-layout/desktop-traditional'
-import wallpaper from './assets/windowsxp.png'
+import wallpaper from './assets/wallpaper.png'
+import xpWallpaper from './assets/windowsxp.png'
 import type { Page } from './utils/parseImageConfig'
 import DesktopCommission from './desktop-layout/desktop-commission'
 import DesktopSocialMedia from './desktop-layout/desktop-social-media'
@@ -49,7 +50,7 @@ export default function App() {
   }, []);
 
   return (
-    <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#1A355E', backgroundImage: `url(${wallpaper})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#1A355E', backgroundImage: `url(${screen === 'about-me' ? xpWallpaper : wallpaper})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       {screen === 'home' && (
         <div style={{ width: 1920, height: 1080, transform: `scale(${scale})`, transformOrigin: 'center', flexShrink: 0 }}>
           <DesktopHomepage onNavigate={navigate} />

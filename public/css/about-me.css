@@ -32,7 +32,7 @@ nav .links {
 	border-bottom: 2px solid #1D43D1;
 }
 nav:before {
-	content: "SpaceHey Header";
+	content: "UNDER CONSTRUCTION ABOUT ME";
 	display: block;
 	padding: 1em;
 	background: linear-gradient(to bottom, #245edb 0%, #3f8cf3 9%, #245edb 18%, #245edb 92%, #333 100%) center/cover no-repeat;
@@ -56,14 +56,7 @@ nav:after {
 	margin-right: .5em;
 	pointer-events: none;
 }
-main:before {
-	content: url('https://external-media.spacehey.net/media/s5At1S5e9SjSeSoJyKuk_liKw_HUHUAYaKR9eB1Or4ig=/https://media.giphy.com/media/w3AmrG1E1vr56/giphy.gif');
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	transform: translateX(-3vw) translateY(-6vh);
-	pointer-events: none;
-}
+
 main {
 	background: none;
 	position: relative;
@@ -228,11 +221,12 @@ nav:after {
 	background: #E7E4CF;
 }
 .left .table-section .details-table td:first-child p {
-	padding: .3em .3em 1em .3em;
+	padding: .3em .3em 0em .3em;
 	border-bottom: 2px ridge #E7E4CF;
 }
 .left .table-section .details-table td p {
 	padding: .3em;
+	margin-bottom: 3px;
 	line-height: initial;
 }
 .profile .left .table-section:last-child .details-table tbody {
