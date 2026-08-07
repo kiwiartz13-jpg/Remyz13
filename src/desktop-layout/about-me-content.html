@@ -29,63 +29,21 @@
       content="SpaceHey is a retro social network focused on privacy and customizability. It's a friendly place to have fun, meet friends, and be creative. Join for free!"
     />
 
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="https://spacehey.com/img/favicons/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="https://spacehey.com/img/favicons/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="https://spacehey.com/img/favicons/favicon-16x16.png"
-    />
-    <link
-      rel="mask-icon"
-      href="https://spacehey.com/img/favicons/safari-pinned-tab.svg"
-      color="#1D4ED8"
-    />
-    <link
-      rel="manifest"
-      href="https://spacehey.com/img/favicons/site.webmanifest"
-    />
+    <!-- Favicons/manifest/opensearch/canonical all pointed at spacehey.com and
+         were fetched live. Removed; index.html already sets this site's icons. -->
     <meta name="apple-mobile-web-app-title" content="SpaceHey" />
     <meta name="application-name" content="SpaceHey" />
     <meta name="msapplication-TileColor" content="#1D4ED8" />
-    <meta
-      name="msapplication-config"
-      content="https://spacehey.com/img/favicons/browserconfig.xml"
-    />
     <meta name="theme-color" content="#1D4ED8" />
-
-    <link
-      href="https://spacehey.com/opensearch.xml"
-      rel="search"
-      title="Search SpaceHey"
-      type="application/opensearchdescription+xml"
-    />
-
-    <link rel="canonical" href="https://spacehey.com/profile?id=4544508" />
   </head>
 
-  <body
-    data-base="https://spacehey.com"
-    data-new-gr-c-s-check-loaded="8.937.0"
-    data-gr-ext-installed=""
-  >
-    <!-- [spacehey.com] SpaceHey Server: webserver-2 -->
-
+  <body data-new-gr-c-s-check-loaded="8.937.0" data-gr-ext-installed="">
     <div class="container">
       <nav class="">
         <div class="top">
           <div class="left">
-            <a href="https://spacehey.com/home">
+            <!-- was: https://spacehey.com/home -->
+            <a href="#">
               <img
                 class="logo logo-fallback"
                 src="/about-me/aphextwin.svg"
@@ -96,7 +54,8 @@
             </a>
           </div>
           <div class="center">
-            <form action="https://spacehey.com/search" role="search">
+            <!-- was: action="https://spacehey.com/search" -->
+            <form onsubmit="return false;" role="search">
               <label for="q">Search Users:</label>
               <div class="search-wrapper">
                 <input id="q" type="text" name="q" autocomplete="off" />
@@ -105,31 +64,29 @@
             </form>
           </div>
           <div class="right">
-            <a href="https://spacehey.com/help" rel="help">Help</a> |
-            <a href="https://spacehey.com/logout">LogOut</a>
+            <!-- was: /help and /logout on spacehey.com -->
+            <a href="#" rel="help">Help</a> |
+            <a href="#">LogOut</a>
           </div>
         </div>
+        <!-- Originals, in order: spacehey.com/{home,browse,search}, im., blog.,
+             spacehey.com/bulletins, forum., groups., layouts.,
+             spacehey.com/{favorites,invite,mobile}, shop., spacehey.com/about -->
         <ul class="links">
-          <li class=""><a href="https://spacehey.com/home">Home</a></li>
-          <li class=""><a href="https://spacehey.com/browse">Browse</a></li>
-          <li class=""><a href="https://spacehey.com/search">Search</a></li>
-          <li class=""><a href="https://im.spacehey.com">Messages</a></li>
-          <li class=""><a href="https://blog.spacehey.com">Blog</a></li>
-          <li class="">
-            <a href="https://spacehey.com/bulletins">Bulletins</a>
-          </li>
-          <li class=""><a href="https://forum.spacehey.com/">Forum</a></li>
-          <li class=""><a href="https://groups.spacehey.com">Groups</a></li>
-          <li class=""><a href="https://layouts.spacehey.com">Layouts</a></li>
-          <li class=""><a href="https://spacehey.com/favorites">Favs</a></li>
-          <li class=""><a href="https://spacehey.com/invite">Invite</a></li>
-          <li class="">
-            <a href="https://spacehey.com/mobile" title="SpaceHey Mobile"
-              >App</a
-            >
-          </li>
-          <li><a href="https://shop.spacehey.com/">Shop</a></li>
-          <li class=""><a href="https://spacehey.com/about">About</a></li>
+          <li class=""><a href="#">Home</a></li>
+          <li class=""><a href="#">Browse</a></li>
+          <li class=""><a href="#">Search</a></li>
+          <li class=""><a href="#">Messages</a></li>
+          <li class=""><a href="#">Blog</a></li>
+          <li class=""><a href="#">Bulletins</a></li>
+          <li class=""><a href="#">Forum</a></li>
+          <li class=""><a href="#">Groups</a></li>
+          <li class=""><a href="#">Layouts</a></li>
+          <li class=""><a href="#">Favs</a></li>
+          <li class=""><a href="#">Invite</a></li>
+          <li class=""><a href="#" title="SpaceHey Mobile">App</a></li>
+          <li><a href="#">Shop</a></li>
+          <li class=""><a href="#">About</a></li>
         </ul>
       </nav>
       <main>
@@ -138,10 +95,8 @@
           itemscope=""
           itemtype="https://schema.org/Person"
         >
-          <meta
-            itemprop="url"
-            content="https://spacehey.com/profile?id=4544508"
-          />
+          <!-- was: content="https://spacehey.com/profile?id=4544508" -->
+          <meta itemprop="url" content="" />
           <meta itemprop="identifier" content="4544508" />
 
           <div class="col w-40 left">
@@ -152,14 +107,14 @@
               <div class="profile-pic">
                 <img
                   class="pfp-fallback"
-                  src="/about-me/pfp.png"
+                  src="/about-me/pfp.svg"
                   alt="Remyz13's profile picture"
                 />
               </div>
               <div class="details">
                 <p class="online">
                   <img
-                    src="https://static.spacehey.net/img/green_person.svg"
+                    src="/about-me/icons/green_person.svg"
                     aria-hidden="true"
                     alt="Online icon"
                     loading="lazy"
@@ -192,7 +147,7 @@
                   <div class="f-col">
                     <a href="/addfriend?id=4544508" rel="nofollow">
                       <img
-                        src="https://static.spacehey.net/icons/add.png"
+                        src="/about-me/icons/add.png"
                         class="icon"
                         aria-hidden="true"
                         loading="lazy"
@@ -204,7 +159,7 @@
                   <div class="f-col">
                     <a href="/addfavorite?id=4544508" rel="nofollow">
                       <img
-                        src="https://static.spacehey.net/icons/award_star_add.png"
+                        src="/about-me/icons/award_star_add.png"
                         class="icon"
                         aria-hidden="true"
                         loading="lazy"
@@ -216,12 +171,10 @@
                 </div>
                 <div class="f-row">
                   <div class="f-col">
-                    <a
-                      href="https://im.spacehey.com?user=4544508"
-                      rel="nofollow"
-                    >
+                    <!-- was: https://im.spacehey.com?user=4544508 -->
+                    <a href="#" rel="nofollow">
                       <img
-                        src="https://static.spacehey.net/icons/comment.png"
+                        src="/about-me/icons/comment.png"
                         class="icon"
                         aria-hidden="true"
                         loading="lazy"
@@ -231,12 +184,10 @@
                     </a>
                   </div>
                   <div class="f-col">
-                    <a
-                      href="https://im.spacehey.com/new?text=https://spacehey.com/profile?id=4544508"
-                      rel="nofollow"
-                    >
+                    <!-- was: https://im.spacehey.com/new?text=https://spacehey.com/profile?id=4544508 -->
+                    <a href="#" rel="nofollow">
                       <img
-                        src="https://static.spacehey.net/icons/arrow_right.png"
+                        src="/about-me/icons/arrow_right.png"
                         class="icon"
                         aria-hidden="true"
                         loading="lazy"
@@ -248,12 +199,10 @@
                 </div>
                 <div class="f-row">
                   <div class="f-col">
-                    <a
-                      href="https://im.spacehey.com?user=4544508"
-                      rel="nofollow"
-                    >
+                    <!-- was: https://im.spacehey.com?user=4544508 -->
+                    <a href="#" rel="nofollow">
                       <img
-                        src="https://static.spacehey.net/icons/email.png"
+                        src="/about-me/icons/email.png"
                         class="icon"
                         aria-hidden="true"
                         loading="lazy"
@@ -265,7 +214,7 @@
                   <div class="f-col">
                     <a href="/block?id=4544508" rel="nofollow">
                       <img
-                        src="https://static.spacehey.net/icons/exclamation.png"
+                        src="/about-me/icons/exclamation.png"
                         class="icon"
                         aria-hidden="true"
                         loading="lazy"
@@ -279,7 +228,7 @@
                   <div class="f-col">
                     <a href="/soon?new">
                       <img
-                        src="https://static.spacehey.net/icons/group_add.png"
+                        src="/about-me/icons/group_add.png"
                         class="icon"
                         aria-hidden="true"
                         loading="lazy"
@@ -291,7 +240,7 @@
                   <div class="f-col">
                     <a href="/report?type=user&amp;id=4544508" rel="nofollow">
                       <img
-                        src="https://static.spacehey.net/icons/flag_red.png"
+                        src="/about-me/icons/flag_red.png"
                         class="icon"
                         aria-hidden="true"
                         loading="lazy"
@@ -316,7 +265,10 @@
                         <p>General</p>
                       </td>
                       <td>
-                        <p>music, bass guitars, insects, plants, skateboards, gorillaz, animal crossing</p>
+                        <p>
+                          music, bass guitars, insects, plants, skateboards,
+                          gorillaz, animal crossing
+                        </p>
                       </td>
                     </tr>
                     <tr>
@@ -324,7 +276,13 @@
                         <p>Music</p>
                       </td>
                       <td>
-                        <p>gorillaz, aphex twin, ill add more</p>
+                        <p>
+                          Gorillaz, Aphex Twin, Oingo Boingo, DEVO, Hail the
+                          Sun, Dance Gavin Dance, Acrania, of Montreal, Circa
+                          Survive, Obywatel GC, Mella, Mr. Bungle, Paleface
+                          Swiss, ISMFOF, Knocked Loose, The Cure, Foxy Shazam,
+                          The Smiths, NIN, Soft Cell
+                        </p>
                       </td>
                     </tr>
                     <tr>
@@ -332,7 +290,10 @@
                         <p>OC's</p>
                       </td>
                       <td>
-                        <p>Seven, Five, Dusk, Isum, Craig, Quill, Pitch, Debug, Rex, Slinky, Remy, Phi, Meep</p>
+                        <p>
+                          Seven, Five, Dusk, Isum, Craig, Quill, Pitch, Debug,
+                          Rex, Slinky, Remy, Phi, Meep
+                        </p>
                       </td>
                     </tr>
                     <tr>
@@ -397,12 +358,7 @@
               </div>
             </div>
             <div class="blog-preview">
-              <h4>
-                Remyz13's Latest Blog Entries [<a
-                  href="https://blog.spacehey.com/user?id=4544508"
-                  >View Blog</a
-                >]
-              </h4>
+              <h4>Remyz13's Latest Blog Entries</h4>
               <p><i>There are no Blog Entries yet.</i></p>
             </div>
             <div class="blurbs">
@@ -455,7 +411,7 @@
                           title="Verified User"
                           data-reason="Creator of SpaceHey"
                           ><img
-                            src="https://static.spacehey.net/icons2/tick_light_blue.png"
+                            src="/about-me/icons/tick_light_blue.png"
                             class="icon verified"
                             aria-hidden="true"
                             loading="lazy"
@@ -466,7 +422,7 @@
                     <a href="">
                       <img
                         class="pfp-fallback"
-                        src="/public/about-me/hachiware.svg"
+                        src="/about-me/hachiware.svg"
                         alt="An's profile picture"
                         loading="lazy"
                       />
@@ -481,7 +437,7 @@
                           title="Verified User"
                           data-reason="Creator of SpaceHey"
                           ><img
-                            src="https://static.spacehey.net/icons2/tick_light_blue.png"
+                            src="/about-me/icons/tick_light_blue.png"
                             class="icon verified"
                             aria-hidden="true"
                             loading="lazy"
@@ -492,7 +448,7 @@
                     <a href="">
                       <img
                         class="pfp-fallback"
-                        src="/public/about-me/zim.svg"
+                        src="/about-me/zim.svg"
                         alt="An's profile picture"
                         loading="lazy"
                       />
@@ -507,7 +463,7 @@
                           title="Verified User"
                           data-reason="Official Brand Account"
                           ><img
-                            src="https://static.spacehey.net/icons2/tick_light_blue.png"
+                            src="/about-me/icons/tick_light_blue.png"
                             class="icon verified"
                             aria-hidden="true"
                             loading="lazy"
@@ -518,7 +474,7 @@
                     <a href="/profile?id=2">
                       <img
                         class="pfp-fallback"
-                        src="/public/about-me/murdoc.svg"
+                        src="/about-me/murdoc.svg"
                         alt="SpaceHey's profile picture"
                         loading="lazy"
                       />
@@ -556,7 +512,7 @@
                         <a href="/profile?id=1">
                           <img
                             class="pfp-fallback"
-                            src="/public/about-me/hachiware.svg"
+                            src="/about-me/hachiware.svg"
                             alt="chick's profile picture"
                             loading="lazy"
                           />
@@ -583,7 +539,7 @@
                         <a href="/profile?id=2">
                           <img
                             class="pfp-fallback"
-                            src="/public/about-me/murdoc.svg"
+                            src="/about-me/murdoc.svg"
                             alt="murdoc's profile picture"
                             loading="lazy"
                           />
@@ -615,7 +571,4 @@
 
     <link rel="stylesheet" href="/css/important.css" />
   </body>
-  <grammarly-desktop-integration
-    data-grammarly-shadow-root="true"
-  ></grammarly-desktop-integration>
 </html>

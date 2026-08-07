@@ -1619,7 +1619,7 @@ div.wysiwyg {
   }
 }
 .art_banner {
-  background: url('https://static.spacehey.net/img/art_icons_banner.png');
+  background: url('/about-me/icons/art_icons_banner.png');
   background-repeat: repeat-x;
   color: #ecf2f9;
   text-align: center;
@@ -2413,7 +2413,7 @@ img.blur-hover:hover {
     display: none !important;
   }
   .home .col.left {
-    background-image: url('https://static.spacehey.net/img/divider_o.png');
+    background-image: url('/about-me/icons/divider_o.png');
     background-position: right -15px;
     background-repeat: repeat-y;
   }
