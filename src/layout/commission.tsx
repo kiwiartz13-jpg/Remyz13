@@ -24,7 +24,7 @@ function Header({ button } : {button: Button}) {
     );
 }
 
-export default function DesktopCommission({ onNavigate }: { onNavigate: (screen: Page) => void; }) {
+export default function Commission({ onNavigate }: { onNavigate: (screen: Page) => void; }) {
     const homeButton: Button = {
         onClick: () => onNavigate("home"),
         img: homeButtonImg,

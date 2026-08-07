@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import DesktopHomepage from './desktop-layout/desktop-homepage'
-import DesktopDigital from './desktop-layout/desktop-digital'
-import DesktopTraditional from './desktop-layout/desktop-traditional'
+import Homepage from './layout/homepage'
+import Digital from './layout/digital'
+import Traditional from './layout/traditional'
 import wallpaper from './assets/wallpaper.png'
 import xpWallpaper from './assets/windowsxp.png'
 import type { Page } from './utils/parseImageConfig'
-import DesktopCommission from './desktop-layout/desktop-commission'
-import DesktopSocialMedia from './desktop-layout/desktop-social-media'
-import DesktopAboutMe from './desktop-layout/desktop-about-me'
+import Commission from './layout/commission'
+import SocialMedia from './layout/social-media'
+import AboutMe from './layout/about-me'
 
 const HOME_CONTENT_W = 1350;
 const HOME_CONTENT_H = 1005;
@@ -53,32 +53,32 @@ export default function App() {
     <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#1A355E', backgroundImage: `url(${screen === 'about-me' ? xpWallpaper : wallpaper})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       {screen === 'home' && (
         <div style={{ width: 1920, height: 1080, transform: `scale(${scale})`, transformOrigin: 'center', flexShrink: 0 }}>
-          <DesktopHomepage onNavigate={navigate} />
+          <Homepage onNavigate={navigate} />
         </div>
       )}
       {screen === 'digital' && (
         <div style={{ width: '100%', height: '100%' }}>
-          <DesktopDigital onNavigate={navigate} />
+          <Digital onNavigate={navigate} />
         </div>
       )}
       {screen === 'traditional' && (
         <div style={{ width: '100%', height: '100%' }}>
-          <DesktopTraditional onNavigate={navigate} />
+          <Traditional onNavigate={navigate} />
         </div>
       )}
       {screen === 'commission' && (
         <div style={{ width: '100%', height: '100%' }}>
-          <DesktopCommission onNavigate={navigate} />
+          <Commission onNavigate={navigate} />
         </div>
       )}
       {screen === 'social-media' && (
         <div style={{ width: '100%', height: '100%' }}>
-          <DesktopSocialMedia onNavigate={navigate} />
+          <SocialMedia onNavigate={navigate} />
         </div>
       )}
       {screen === 'about-me' && (
         <div style={{ width: '100%', height: '100%' }}>
-          <DesktopAboutMe onNavigate={navigate} />
+          <AboutMe onNavigate={navigate} />
         </div>
       )}
     </div>

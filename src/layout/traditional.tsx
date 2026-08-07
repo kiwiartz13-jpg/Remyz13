@@ -13,7 +13,7 @@ import ArtGallery from "../components/art-gallery";
 import { TopMenu } from "../components/top-menu";
 import type { YearFilter } from "../components/calender-button";
 
-export default function DesktopTraditional({ onNavigate }: { onNavigate: (screen: Page) => void; }) {
+export default function Traditional({ onNavigate }: { onNavigate: (screen: Page) => void; }) {
     const [subfolder, setSubfolder] = useState<string | undefined>(undefined);
     const scrollRef = useRef<HTMLDivElement>(null);
     const [years, setYears] = useState<YearFilter | undefined>(undefined);

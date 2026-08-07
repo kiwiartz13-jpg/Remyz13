@@ -3,6 +3,23 @@
 @theme {
     --animate-fade-in: fade-in 0.2s ease-out;
     --animate-lightbox-in: lightbox-in 0.25s ease-out;
+    --animate-spin-cd: spin-cd 5s linear infinite;
+
+    /* SpaceHey breakpoints: 30em/17em, kept from the original stylesheet. */
+    --breakpoint-xs: 30em;
+    --breakpoint-xxs: 17em;
+
+    --font-spacehey: verdana, arial, sans-serif, helvetica;
+    --font-xp: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+    --font-notepad: "Lucida Console", "Lucida Sans Typewriter", monaco, "Bitstream Vera Sans Mono", monospace;
+
+    --xp-title-bar: linear-gradient(to bottom, #245edb 0%, #3f8cf3 9%, #245edb 18%, #245edb 92%, #333 100%);
+    --xp-close: linear-gradient(180deg, rgb(233, 145, 126) 0%, rgb(223, 89, 65) 29%, rgb(156, 32, 15) 100%);
+    --xp-taskbar: linear-gradient(180deg, #0997ff, #0053ee 8%, #0050ee 40%, #06f 88%, #06f 93%, #005bff 95%, #003dd7 96%, #003dd7);
+    --xp-start: radial-gradient(circle, #5eac56 0%, #3c873c 100%);
+    --xp-button: linear-gradient(180deg, #366ef3, #2d69f4 86%, #1a3eb4);
+    --xp-button-hover: linear-gradient(180deg, #1c35b4, #2450d7 86%, #1a3eb4);
+    --xp-cd-shine: linear-gradient(150deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2), 40%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.6));
 }
 
 @keyframes fade-in {
@@ -13,4 +30,9 @@
 @keyframes lightbox-in {
     from { opacity: 0; transform: scale(0.85); }
     to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes spin-cd {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }

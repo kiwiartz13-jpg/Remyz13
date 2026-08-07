@@ -42,7 +42,7 @@ function SocialMediaButton({
     )
 }
 
-export default function DesktopSocialMedia({ onNavigate }: { onNavigate: (screen: Page) => void; }) {
+export default function SocialMedia({ onNavigate }: { onNavigate: (screen: Page) => void; }) {
 
     const homeButton = {
         img: homeImg,

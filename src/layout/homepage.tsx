@@ -16,22 +16,22 @@ import traditionalStill from "../assets/homepage-menu-buttons/traditional-still.
 import traditionalGif from "../assets/homepage-menu-buttons/traditional.gif";
 import traditionalText from "../assets/homepage-menu-buttons/traditional-text.png";
 
-import aboutMeCss from "../css/desktop-homepage-css/about-me.txt?raw";
-import aboutMeTextCss from "../css/desktop-homepage-css/about-me-text.txt?raw";
-import digitalCss from "../css/desktop-homepage-css/digital.txt?raw";
-import digitalTextCss from "../css/desktop-homepage-css/digital-text.txt?raw";
-import logoCss from "../css/desktop-homepage-css/logo.txt?raw";
-import shopCss from "../css/desktop-homepage-css/shop.txt?raw";
-import shopTextCss from "../css/desktop-homepage-css/shop-text.txt?raw";
-import socialMediaCss from "../css/desktop-homepage-css/social-media.txt?raw";
-import socialMediaTextCss from "../css/desktop-homepage-css/social-media-text.txt?raw";
-import traditionalCss from "../css/desktop-homepage-css/traditional.txt?raw";
-import traditionalTextCss from "../css/desktop-homepage-css/traditional-text.txt?raw";
+import aboutMeCss from "../css/homepage-css/about-me.txt?raw";
+import aboutMeTextCss from "../css/homepage-css/about-me-text.txt?raw";
+import digitalCss from "../css/homepage-css/digital.txt?raw";
+import digitalTextCss from "../css/homepage-css/digital-text.txt?raw";
+import logoCss from "../css/homepage-css/logo.txt?raw";
+import shopCss from "../css/homepage-css/shop.txt?raw";
+import shopTextCss from "../css/homepage-css/shop-text.txt?raw";
+import socialMediaCss from "../css/homepage-css/social-media.txt?raw";
+import socialMediaTextCss from "../css/homepage-css/social-media-text.txt?raw";
+import traditionalCss from "../css/homepage-css/traditional.txt?raw";
+import traditionalTextCss from "../css/homepage-css/traditional-text.txt?raw";
 
 import HoverImgButton from "../components/hover-img-button";
 import type { Page } from "../utils/parseImageConfig";
 
-export default function DesktopHomepage({ onNavigate }: { onNavigate: (page: Page) => void }) {
+export default function Homepage({ onNavigate }: { onNavigate: (page: Page) => void }) {
     return (
         <div className="relative w-full h-full overflow-hidden">
             <HoverImgButton
