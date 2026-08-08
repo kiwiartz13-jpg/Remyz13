@@ -5,12 +5,17 @@ import DrawGif from "../../art/digital-art/animation/2026 - Drawing Forever.gif"
 import { YoutubeEmbed, type NavVideo } from "./youtube-embed";
 
 import { INTERESTS } from "./data";
-import InterestsPanel from "./interests-panel";
-import ProfileCard, { MoodLinks } from "./profile-card";
-import ProfileNav from "./profile-nav";
-import { BlurbsPanel, ClickMePanel, FriendCommentsPanel, FriendSpacePanel, NotepadPanel } from "./right-column";
+import InterestsPanel from "./panels/interests-panel";
+import ProfileCard, { MoodLinks } from "./panels/profile-card";
+import ProfileNav from "./panels/profile-nav";
+import BlurbsPanel from "./panels/blurbs-panel";
+import FriendCommentsPanel from "./panels/friend-comments-panel";
+import FriendSpacePanel from "./panels/friend-space-panel";
+import NotepadPanel from "./panels/notepad-panel";
 import Taskbar from "./taskbar";
 import XpWindow from "./xp-window";
+import PianoPanel from "./panels/piano-panel";
+import ShrugPanel from "./panels/shrug-panel";
 
 export default function AboutMeProfile({ onNavigate }: { onNavigate: (screen: Page) => void; }) {
     const [video, setVideo] = useState<NavVideo | null>(null);
@@ -35,11 +40,11 @@ export default function AboutMeProfile({ onNavigate }: { onNavigate: (screen: Pa
                             </XpWindow>
 
                             <InterestsPanel title="Interests" rows={INTERESTS} />
-                            <InterestsPanel title="¯\_(ツ)_/¯" rows={[]} stackBody />
+                            <ShrugPanel title="¯\_(ツ)_/¯" />
                         </div>
 
                         <div className="p-[10px] xs:table-cell xs:align-top">
-                            <ClickMePanel />
+                            <PianoPanel />
                             <NotepadPanel />
                             <BlurbsPanel />
                             <FriendSpacePanel />

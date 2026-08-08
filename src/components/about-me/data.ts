@@ -31,6 +31,7 @@ export const NAV_LINKS: NavLink[] = [
     { label: "MV", href: "https://youtu.be/WXR-bCF5dbM?si=fmFLWXkdMhq6A8Xb" }, // favorite gorliazz music video
     { label: "Animation", href: "https://youtu.be/f0g0jzm0mYA?si=--F9L6vPUCRamI5A" }, // favorite animation
     { label: "Inspiration", href: "https://www.jenniferxiao.com/", hyperlink: true }, // link website i inspired from
+    { label: "DEVO", href: "https://youtu.be/fUJNty7Q76k?si=5_KeUp3PApK0NTS4" }, // link website i inspired from
     { label: "?", href: "https://youtu.be/H4dGpz6cnHo?si=4vXs-YnIrBkH1NJo" }, 
 ];
 

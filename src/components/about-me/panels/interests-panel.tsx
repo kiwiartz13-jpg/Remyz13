@@ -1,5 +1,5 @@
-import type { InterestRow } from "./data";
-import XpWindow from "./xp-window";
+import type { InterestRow } from "../data";
+import XpWindow from "../xp-window";
 
 const CELL = "w-full bg-[#e7e4cf] align-top";
 

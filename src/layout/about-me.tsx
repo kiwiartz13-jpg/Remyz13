@@ -15,8 +15,6 @@ export default function AboutMe({ onNavigate }: { onNavigate: (screen: Page) => 
         h: "clamp(80px, 8vw, 200px)"
     }
 
-    // leading-[1.225] matches SpaceHey's `html` line-height, which used to leak
-    // app-wide and set the home button's baseline spacing on this page.
     return (
         <div className="flex flex-col w-full h-full overflow-y-auto overflow-x-hidden leading-[1.225]">
             <div className="static min-[1056px]:absolute self-start pl-5 pt-2">

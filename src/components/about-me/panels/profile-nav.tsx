@@ -1,13 +1,13 @@
 import { Fragment, useRef, useState, type SubmitEvent } from "react";
-import navLogo from "../../assets/about-me/aphextwin.svg";
-import erro from "../../assets/about-me/erro.mp3";
-import help from "../../assets/about-me/help.mp3";
-import kaboom from "../../assets/about-me/kaboom.mp3";
-import { NAV_LINKS } from "./data";
-import { XP_TITLE_BAR } from "./xp-window";
-import type { Page } from "../../utils/parseImageConfig";
-import { playSound } from "../../utils/sound";
-import { type NavVideo } from "./youtube-embed";
+import navLogo from "../../../assets/about-me/aphextwin.svg";
+import erro from "../../../assets/about-me/erro.mp3";
+import help from "../../../assets/about-me/help.mp3";
+import kaboom from "../../../assets/about-me/kaboom.mp3";
+import { NAV_LINKS } from "../data";
+import { XP_TITLE_BAR } from "../xp-window";
+import type { Page } from "../../../utils/parseImageConfig";
+import { playSound } from "../../../utils/sound";
+import { type NavVideo } from "../youtube-embed";
 
 export default function ProfileNav({ onNavigate, onPlayVideo }: { onNavigate: (screen: Page) => void; onPlayVideo: (video: NavVideo) => void; }) {
   const [ open, setOpen ] = useState(true);

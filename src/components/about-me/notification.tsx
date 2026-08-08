@@ -6,7 +6,6 @@ export default function Notification({
     onDone,
 }: {
     children: ReactNode;
-    /** Seconds for the whole drop → hold → retract cycle. */
     duration?: number;
     onDone?: () => void;
 }) {

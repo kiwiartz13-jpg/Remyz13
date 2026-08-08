@@ -1,6 +1,5 @@
 import tickIcon from "../../assets/about-me/icons/tick_light_blue.png";
 
-/** SpaceHey's inline `.icon` sprite: 1.4em square, nudged onto the text baseline. */
 export default function Icon({ src, className = "" }: { src: string; className?: string }) {
     return (
         <img
@@ -13,7 +12,6 @@ export default function Icon({ src, className = "" }: { src: string; className?:
     );
 }
 
-/** The blue verification tick, which renders smaller and closer to the name. */
 export function VerifiedIcon({ reason }: { reason: string }) {
     return (
         <span className="verified-info cursor-pointer" title="Verified User" data-reason={reason}>

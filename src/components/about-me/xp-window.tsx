@@ -1,8 +1,6 @@
 import type { ReactNode } from "react";
 
-/** Border/radius treatment of the window body. */
 export type XpFrame = "mood" | "panel" | "section";
-/** Title-bar padding: 0.5em, 0.7em or 1em in the original layout. */
 export type XpTitlePad = "sm" | "md" | "lg";
 
 const FRAME: Record<XpFrame, string> = {
@@ -39,7 +37,6 @@ export default function XpWindow({
     titlePad?: XpTitlePad;
     icon?: string;
     title: ReactNode;
-    /** False for bars the original drew with ::before content — plain, unbolded text. */
     asHeading?: boolean;
     className?: string;
     children?: ReactNode;
