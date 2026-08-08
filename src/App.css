@@ -4,8 +4,11 @@
     --animate-fade-in: fade-in 0.2s ease-out;
     --animate-lightbox-in: lightbox-in 0.25s ease-out;
     --animate-spin-cd: spin-cd 5s linear infinite;
+    --animate-note-float: note-float var(--note-duration, 5s) steps(60, jump-none) forwards;
+    --animate-note-sway: note-sway 5s steps(60) infinite alternate;
+    --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+    --animate-notify: notify var(--notify-duration, 4s) ease-in-out both;
 
-    /* SpaceHey breakpoints: 30em/17em, kept from the original stylesheet. */
     --breakpoint-xs: 30em;
     --breakpoint-xxs: 17em;
 
@@ -22,6 +25,11 @@
     --xp-cd-shine: linear-gradient(150deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2), 40%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.6));
 }
 
+/* The drawing GIF anchors to the viewport and hangs off the right edge; clip it instead of scrolling. */
+html, body, #root {
+    overflow-x: hidden;
+}
+
 @keyframes fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -35,4 +43,25 @@
 @keyframes spin-cd {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+
+@keyframes note-float {
+    to { transform: translate(var(--note-dx), var(--note-dy)); }
+}
+
+@keyframes note-sway {
+    from { transform: translateX(-10px) rotate(-3deg); }
+    to { transform: translateX(10px) rotate(3deg); }
+}
+
+/* Track holds two copies of the row, so -50% is one full copy: seamless loop. */
+@keyframes marquee {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+}
+
+/* -100% is the element's own height, so the drop distance always matches the content. */
+@keyframes notify {
+    0%, 100% { transform: translateY(-100%); }
+    12%, 88% { transform: translateY(0); }
 }

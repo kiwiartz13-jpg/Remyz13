@@ -1,8 +1,8 @@
+import { playSound } from "../../utils/sound";
 import { CONTACT_ACTIONS } from "./data";
 import Icon from "./icon";
 
-/** The fixed XP taskbar the "Contacting Remyz13" box was restyled into.
-    Carries `main`'s typography itself so it can be mounted anywhere. */
+
 export default function Taskbar() {
     return (
         <div className="fixed bottom-0 left-0 z-10 m-0 flex w-full border-0 p-0 font-xp text-[80%] bg-[image:var(--xp-taskbar)]">
@@ -14,15 +14,14 @@ export default function Taskbar() {
 
             <div className="m-0 flex items-center overflow-y-scroll text-[0.875em] font-bold">
                 {CONTACT_ACTIONS.map((action) => (
-                    <a
+                    <button
+                        onClick={() => playSound(action.sfx)}
                         key={action.label}
-                        href={action.href}
-                        rel={action.nofollow ? "nofollow" : undefined}
-                        className="ml-[0.3em] rounded-[3px] border border-[#003c74] bg-[image:var(--xp-button)] p-[0.5em] font-normal whitespace-nowrap text-white hover:bg-[image:var(--xp-button-hover)] hover:no-underline"
+                        className="ml-[0.3em] rounded-[3px] border border-[#003c74] cursor-pointer bg-[image:var(--xp-button)] p-[0.5em] font-normal whitespace-nowrap text-white hover:bg-[image:var(--xp-button-hover)] hover:no-underline"
                     >
                         <Icon src={action.icon} />{" "}
                         {action.label}
-                    </a>
+                    </button>
                 ))}
             </div>
         </div>

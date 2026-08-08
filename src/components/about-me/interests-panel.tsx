@@ -15,7 +15,7 @@ export default function InterestsPanel({
     return (
         <XpWindow frame="section" titlePad="lg" title={title} className="my-[10px] w-full">
             <div className="w-full bg-[#e7e4cf]">
-                <table className="xp-table w-full">
+                <table className="w-full border-separate border-spacing-[2px]">
                     <tbody className={stackBody ? "flex flex-col" : undefined}>
                         {rows.map((row) => (
                             <tr key={row.label} className="flex flex-col">

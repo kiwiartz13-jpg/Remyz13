@@ -1,6 +1,6 @@
-import { Fragment, useRef } from "react";
-import kaboomSound from "../../assets/about-me/kaboom.mp3";
-import { BLURBS, COMMENTS, FRIENDS } from "./data";
+import { Fragment, useRef, useState, type CSSProperties, type MouseEvent } from "react";
+import { createPortal } from "react-dom";
+import { BLURBS, COMMENTS, FRIENDS, SCALE } from "./data";
 import { VerifiedIcon } from "./icon";
 import piano from "../../assets/about-me/piano.svg"
 import XpWindow from "./xp-window";
@@ -8,33 +8,138 @@ import XpWindow from "./xp-window";
 const PANEL_INNER = "p-[7px]";
 const LINK = "text-[#1E40AF] no-underline";
 
+type FloatingNote = {
+  id: number;
+  scaleIndex: number;
+  beamed: boolean;
+  x: number;
+  y: number;
+  dx: number;
+  dy: number;
+  duration: number;
+};
+
+function NoteGlyph({ stem, beamed }: { stem: "up" | "down"; beamed: boolean }) {
+  const up = stem === "up";
+  const [cx, cy] = up ? [8, 31] : [16, 9];
+
+  if (beamed) {
+    return up ? (
+      <svg viewBox="0 0 42 40" aria-hidden="true" className="mx-auto block h-[34px] w-[39px] fill-current">
+        <ellipse cx="8" cy="31" rx="7" ry="5" transform="rotate(-20 8 31)" />
+        <ellipse cx="26" cy="31" rx="7" ry="5" transform="rotate(-20 26 31)" />
+        <rect x="12.6" y="4" width="2.2" height="26" />
+        <rect x="30.6" y="4" width="2.2" height="26" />
+        <rect x="12.6" y="4" width="20.2" height="4.5" />
+      </svg>
+    ) : (
+      <svg viewBox="0 0 42 40" aria-hidden="true" className="mx-auto block h-[34px] w-[39px] fill-current">
+        <ellipse cx="16" cy="9" rx="7" ry="5" transform="rotate(-20 16 9)" />
+        <ellipse cx="34" cy="9" rx="7" ry="5" transform="rotate(-20 34 9)" />
+        <rect x="9.2" y="10" width="2.2" height="26" />
+        <rect x="27.2" y="10" width="2.2" height="26" />
+        <rect x="9.2" y="31.5" width="20.2" height="4.5" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 40" aria-hidden="true" className="mx-auto block h-[34px] w-[22px] fill-current">
+      <ellipse cx={cx} cy={cy} rx="7" ry="5" transform={`rotate(-20 ${cx} ${cy})`} />
+      <rect x={up ? 12.6 : 9.2} y={up ? 4 : 10} width="2.2" height="26" />
+    </svg>
+  );
+}
+
 export function ClickMePanel() {
-  const audio = useRef<HTMLAudioElement>(null);
+  const [notes, setNotes] = useState<FloatingNote[]>([]);
+  const clicks = useRef(0);
+  const lastClick = useRef(0);
+  const audioCtx = useRef<AudioContext | null>(null);
+
+  function playTone(freq: number) {
+    const ctx = (audioCtx.current ??= new AudioContext());
+    void ctx.resume();
+
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "triangle";
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.16, now + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.3);
+    osc.connect(gain).connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 1.35);
+  }
+
+  function spawnNote(event: MouseEvent<HTMLButtonElement>) {
+    const id = clicks.current++;
+    const scaleIndex = id % SCALE.length;
+    playTone(SCALE[scaleIndex].freq);
+
+    const now = event.timeStamp;
+    const beam = now - lastClick.current < 300;
+    lastClick.current = beam ? 0 : now;
+
+    const note: FloatingNote = {
+      id,
+      scaleIndex,
+      beamed: false,
+      x: event.clientX,
+      y: event.clientY,
+      dx: 60 + Math.random() * 240,
+      dy: -(event.clientY + 120),
+      duration: 2.6 + Math.random() * 1.8,
+    };
+
+    setNotes((prev) => {
+      const last = prev.at(-1);
+      if (beam && last && !last.beamed) {
+        return [...prev.slice(0, -1), { ...last, beamed: true }];
+      }
+      return [...prev.slice(-(24 - 1)), note];
+    });
+  }
 
   return (
     <div className="
-      mb-[10px] flex items-center justify-center border-0 bg-[#e7e5cf] p-[10px] 
+      mb-[10px] flex items-center justify-center border-0 bg-[#e7e5cf] p-[10px]
       shadow-[2px_2px_0_#ffffff_inset,-2px_-2px_0_#5d5c51_inset,5px_8px_10px_#0006]
       ">
-      <img src={piano} className="active:scale-95 transition-transform" />
-      {/* <div className="text-center font-bold">
-        <audio ref={audio} src={kaboomSound} preload="auto" />
-        <h3 className="my-[1em] text-[1.17em] font-bold">
-          <a
-            href="#"
-            className={LINK}
-            onClick={(e) => {
-              e.preventDefault();
-              const el = audio.current;
-              if (!el) return;
-              el.currentTime = 0;
-              void el.play();
+      <button
+        type="button"
+        onClick={spawnNote}
+        aria-label="Play the next note of the scale"
+        className="cursor-pointer border-0 bg-transparent p-0"
+      >
+        <img src={piano} alt="" className="block max-w-none active:scale-95 transition-transform duration-100" />
+      </button>
+
+      {createPortal(
+        notes.map(({ id, scaleIndex, beamed, x, y, dx, dy, duration }) => (
+          <div
+            key={id}
+            onAnimationEnd={(e) => {
+              if (e.currentTarget === e.target) setNotes((prev) => prev.filter((n) => n.id !== id));
             }}
+            style={{
+              left: x,
+              top: y,
+              "--note-dx": `${dx}px`,
+              "--note-dy": `${dy}px`,
+              "--note-duration": `${duration}s`,
+            } as CSSProperties}
+            className="animate-note-float pointer-events-none fixed z-[60] -mt-[38px] -ml-[32px] w-[64px] text-center font-xp text-[#222222] select-none"
           >
-            click me &gt;.&lt;
-          </a>
-        </h3>
-      </div> */}
+            <div className="animate-note-sway">
+              <NoteGlyph stem={SCALE[scaleIndex].stem} beamed={beamed} />
+            </div>
+          </div>
+        )),
+        document.body,
+      )}
     </div>
   );
 }
@@ -70,7 +175,7 @@ export function BlurbsPanel() {
       <div className={PANEL_INNER}>
         {BLURBS.map((blurb) => (
           <div key={blurb.heading} className="mb-[14px]">
-            <h4 className="m-0 mb-[5px] font-bold text-[#ED0707]">
+            <h4 className="m-0 mb-[5px] font-bold text-[#dd1974]">
               {blurb.heading}
             </h4>
             <p itemProp={blurb.itemProp} className="m-0 mb-[8px] text-[12px]">
@@ -88,7 +193,6 @@ export function FriendSpacePanel() {
     <XpWindow frame="panel" title="Friend Space" className="mt-[1em]">
       <div className={PANEL_INNER}>
         <p className="m-0 mb-[8px] text-[12px]" />
-        {/* Trailing space is load-bearing, as with the nav links. */}
         <div>
           {FRIENDS.map((friend) => (
             <Fragment key={friend.name}>
@@ -120,7 +224,7 @@ export function FriendCommentsPanel() {
   return (
     <XpWindow frame="panel" title="Friend Comments" className="mt-[1em]">
       <div className={PANEL_INNER}>
-        <table className="xp-table block h-[300px] w-full overflow-y-scroll bg-[#e7e4cf] wrap-break-word">
+        <table className="block h-[300px] w-full border-separate border-spacing-[2px] overflow-y-scroll bg-[#e7e4cf] wrap-break-word">
           <tbody>
             {COMMENTS.map((comment) => (
               <tr key={comment.commentHref}>
@@ -135,7 +239,7 @@ export function FriendCommentsPanel() {
                       src={comment.pfp}
                       alt={comment.alt}
                       loading="lazy"
-                      className="max-h-[200px] w-[90px] max-w-full"
+                      className="inline max-h-[200px] w-[90px] max-w-full align-baseline"
                     />
                   </a>
                 </td>
