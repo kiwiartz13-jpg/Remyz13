@@ -14,9 +14,9 @@ import sound5 from "../../assets/about-me/sfx/mario-kart-star.mp3"
 import sound6 from "../../assets/about-me/sfx/minecraft-click.mp3"
 import sound7 from "../../assets/about-me/sfx/minecraft-drinking.mp3"
 import sound8 from "../../assets/about-me/sfx/chiikawa-unana.mp3"
-import hachiwarePfp from "../../assets/about-me/hachiware.svg";
-import murdocPfp from "../../assets/about-me/murdoc.svg";
-import zimPfp from "../../assets/about-me/zim.svg";
+import hachiwarePfp from "../../assets/about-me/profiles/hachiware.svg";
+import murdocPfp from "../../assets/about-me/profiles/murdoc.svg";
+import zimPfp from "../../assets/about-me/profiles/zim.svg";
 import type { Page } from "../../utils/parseImageConfig";
 
 export type NavLink = { label: string; href?: string; navigateTo?: Page, hyperlink?: boolean };

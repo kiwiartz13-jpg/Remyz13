@@ -14,7 +14,7 @@ export default function Icon({ src, className = "" }: { src: string; className?:
 
 export function VerifiedIcon({ reason }: { reason: string }) {
     return (
-        <span className="verified-info cursor-pointer" title="Verified User" data-reason={reason}>
+        <span className="verified-info" title="Verified User" data-reason={reason}>
             <img
                 src={tickIcon}
                 alt=""
