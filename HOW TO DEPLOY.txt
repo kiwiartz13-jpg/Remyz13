@@ -1,0 +1,19 @@
+First
+ - Open the terminal by dragging down at the bottom
+ - run "git pull"
+ - git pull puts the changes i've made onto the website
+
+Second
+ - Make your changes that you want
+
+Third
+ - Press the Source Control button on the left
+ - Hit the + icon to stage changes
+ - Write a commit message
+ - Press "Commit"
+ - Then press yes when it gives you the sync popup
+
+Fourth
+ - Now to build the live website
+ - Run "npm run deploy" inside the terminal
+ - It will take approx. 5 minutes
