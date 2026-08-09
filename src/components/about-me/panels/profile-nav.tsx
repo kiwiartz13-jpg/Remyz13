@@ -7,9 +7,9 @@ import { NAV_LINKS } from "../data";
 import { XP_TITLE_BAR } from "../xp-window";
 import type { Page } from "../../../utils/parseImageConfig";
 import { playSound } from "../../../utils/sound";
-import { type NavVideo } from "../youtube-embed";
+import { type NavContent } from "./content-panel";
 
-export default function ProfileNav({ onNavigate, onPlayVideo }: { onNavigate: (screen: Page) => void; onPlayVideo: (video: NavVideo) => void; }) {
+export default function ProfileNav({ onNavigate, onOpenLink }: { onNavigate: (screen: Page) => void; onOpenLink: (content: NavContent) => void; }) {
   const [ open, setOpen ] = useState(true);
   const query = useRef<HTMLInputElement>(null);
 
@@ -91,11 +91,10 @@ export default function ProfileNav({ onNavigate, onPlayVideo }: { onNavigate: (s
                     target="_blank"
                     href={link.href}
                     onClick={(e) => {
-                      if (link.navigateTo) onNavigate(link.navigateTo);
-                        if (!link.hyperlink) {
-                          e.preventDefault();
-                          onPlayVideo({ href: link.href ?? "", label: link.label });
-                        }
+                      if (link.navigateTo) return onNavigate(link.navigateTo);
+                      if (link.hyperlink) return;
+                      e.preventDefault();
+                      onOpenLink({ href: link.href ?? "", label: link.label });
                     }}
                     className="text-[12px] cursor-pointer text-white no-underline [text-shadow:0_0_7px_#095DC3] hover:text-[#040c5c] hover:underline"
                   >

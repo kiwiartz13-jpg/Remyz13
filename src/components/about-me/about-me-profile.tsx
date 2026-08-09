@@ -2,7 +2,8 @@ import { useState } from "react";
 import type { Page } from "../../utils/parseImageConfig";
 import BlinkieRoller from "./blinkie-roller";
 import DrawGif from "../../art/digital-art/animation/2026 - Drawing Forever.gif"
-import { YoutubeEmbed, type NavVideo } from "./youtube-embed";
+import StarePng from "../../assets/about-me/stare.png"
+import ContentPanel, { type NavContent } from "./panels/content-panel";
 
 import { INTERESTS } from "./data";
 import InterestsPanel from "./panels/interests-panel";
@@ -18,13 +19,14 @@ import PianoPanel from "./panels/piano-panel";
 import ShrugPanel from "./panels/shrug-panel";
 
 export default function AboutMeProfile({ onNavigate }: { onNavigate: (screen: Page) => void; }) {
-    const [video, setVideo] = useState<NavVideo | null>(null);
+    const [content, setContent] = useState<NavContent | null>(null);
+    const [staring, setStaring] = useState(false);
 
     return (
         <div className="font-spacehey text-[16px] leading-[1.225]">
             <div className="mx-auto mb-[10px] w-[810px] max-w-full">
-                <ProfileNav onNavigate={onNavigate} onPlayVideo={setVideo} />
-                {video && <YoutubeEmbed key={video.href} video={video} onClose={() => setVideo(null)} />}
+                <ProfileNav onNavigate={onNavigate} onOpenLink={setContent} />
+                {content && <ContentPanel key={content.href} content={content} onClose={() => setContent(null)} />}
                 <BlinkieRoller />
 
                 <main className="relative px-0 py-[6px] font-xp text-[80%] text-black">
@@ -57,7 +59,12 @@ export default function AboutMeProfile({ onNavigate }: { onNavigate: (screen: Pa
                     © 2026 remyz13
                 </footer>
 
-                <img className="absolute bottom-2.5 -right-22 w-70 z-50" src={DrawGif}/>
+                <img
+                    className="absolute bottom-2.5 -right-22 w-70 z-50"
+                    src={staring ? StarePng : DrawGif}
+                    onPointerEnter={() => setStaring(true)}
+                    onPointerLeave={() => setStaring(false)}
+                />
             </div>
 
             <Taskbar />

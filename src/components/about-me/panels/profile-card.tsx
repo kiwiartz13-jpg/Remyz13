@@ -6,6 +6,8 @@ import music from "../../../assets/about-me/music.mp3";
 import onlineIcon from "../../../assets/about-me/icons/green_person.svg";
 import profilePic from "../../../assets/about-me/pfp.svg";
 import Notification from "../notification";
+import antiai from "../../../assets/about-me/antiai.svg"
+import computer from "../../../assets/about-me/computer.gif"
 
 export default function ProfileCard() {
     const audio = useRef<HTMLAudioElement>(null);
@@ -34,7 +36,7 @@ export default function ProfileCard() {
 
             {plays > 0 && (
                 <Notification key={plays} duration={.1}>
-                    <img src={cdPlayer} alt="" className="block w-[320px] max-w-[90vw] border-2 border-[#1b44b8] shadow-[0_5px_10px_#0006]" />
+                    <img src={cdPlayer} alt="" className="block w-[260px] max-w-[90vw] border-2 border-[#1b44b8] shadow-[0_5px_10px_#0006]" />
                 </Notification>
             )}
 
@@ -60,18 +62,22 @@ export default function ProfileCard() {
                     />
                 </div>
 
-                <div className="block">
-                    <p className="my-[10px] text-[95%] font-bold text-[#0C8C00]">
+                <div className="flex flex-col">
+                    <div className="flex flex-row gap-0.5 self-center">
+                        <img src={antiai} className="w-20"/>
+                        <img src={computer} className="w-20"/>
+                    </div>
+                    <p className="my-[10px] flex flex-row text-[95%] font-bold text-[#0C8C00]">
                         <img
                             src={onlineIcon}
                             aria-hidden="true"
                             alt="Online icon"
                             loading="lazy"
-                            className="mr-[5px] h-[1.5em]"
+                            className="animate-online-pulse mr-[5px] h-[1.5em]"
                         />{" "}
                         ONLINE! (terminally)
                     </p>
-                    <p className="my-[10px] text-[12px]">&lt;- cool art</p>
+                    <p className="my-[10px] text-[12px]">Hi I am Remy 🫩</p>
                 </div>
             </div>
         </>

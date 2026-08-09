@@ -107,7 +107,7 @@ export default function PianoPanel() {
         type="button"
         onClick={spawnNote}
         aria-label="Play the next note of the scale"
-        className="cursor-pointer border-0 bg-transparent p-0 hover:scale-101"
+        className="cursor-pointer border-0 bg-transparent p-0 hover:scale-y-102 hover:scale-x-101"
       >
         <img src={piano} alt="" className="block max-w-none active:scale-95 transition-transform duration-100" />
       </button>
@@ -126,7 +126,7 @@ export default function PianoPanel() {
               "--note-dy": `${dy}px`,
               "--note-duration": `${duration}s`,
             } as CSSProperties}
-            className="animate-note-float pointer-events-none fixed z-[60] -mt-[38px] -ml-[32px] w-[64px] text-center font-xp text-[#222222] select-none"
+            className="animate-note-float pointer-events-none fixed z-[60] -mt-[38px] -ml-[32px] w-[64px] text-center font-xp text-[#000000] select-none"
           >
             <div className="animate-note-sway">
               <NoteGlyph stem={SCALE[scaleIndex].stem} beamed={beamed} />
