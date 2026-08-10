@@ -1,4 +1,5 @@
 import type { InterestRow } from "../data";
+import NoteButton from "../note-spawner";
 import XpWindow from "../xp-window";
 
 export default function InterestsPanel({
@@ -24,7 +25,16 @@ export default function InterestsPanel({
                                 </td>
                                 <td className="w-full bg-[#e7e4cf] align-top">
                                     <p className="m-0 mb-[3px] p-[0.3em] text-[12px] leading-[initial] wrap-break-word">{row.value}</p>
-                                    <img className="pl-3 pr-3 mt-2 mb-2" src={row.src} />
+                                    {row.src && (row.instrument ? (
+                                        <NoteButton
+                                            src={row.src}
+                                            instrument={row.instrument}
+                                            label="Play the next note of the bassline"
+                                            imgClassName="pl-3 pr-3 mt-2 mb-2"
+                                        />
+                                    ) : (
+                                        <img className="pl-3 pr-3 mt-2 mb-2" src={row.src} alt="" />
+                                    ))}
                                 </td>
                             </tr>
                         ))}
