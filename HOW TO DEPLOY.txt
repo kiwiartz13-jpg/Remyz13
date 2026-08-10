@@ -11,9 +11,12 @@ Third
  - Hit the + icon to stage changes
  - Write a commit message
  - Press "Commit"
+ - Press "Sync Changes"
  - Then press yes when it gives you the sync popup
 
 Fourth
  - Now to build the live website
  - Run "npm run deploy" inside the terminal
  - It will take approx. 5 minutes
+
+To see changes live, "npm run dev"

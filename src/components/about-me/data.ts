@@ -15,7 +15,7 @@ import sound6 from "../../assets/about-me/sfx/minecraft-click.mp3"
 import sound7 from "../../assets/about-me/sfx/minecraft-drinking.mp3"
 import sound8 from "../../assets/about-me/sfx/chiikawa-unana.mp3"
 import hachiwarePfp from "../../assets/about-me/profiles/hachiware.jpg";
-import murdocPfp from "../../assets/about-me/profiles/murdoc.svg";
+import murdocPfp from "../../assets/about-me/profiles/murdoc.jpg";
 import zimPfp from "../../assets/about-me/profiles/zim.svg";
 import hachiwarePfpAlt from "../../assets/about-me/profiles/hachiware-alt.jpg";
 import murdocPfpAlt from "../../assets/about-me/profiles/murdoc-alt.svg";
@@ -35,16 +35,18 @@ import type { Page } from "../../utils/parseImageConfig";
 export type NavLink = { label: string; href?: string; navigateTo?: Page, hyperlink?: boolean };
 
 export const NAV_LINKS: NavLink[] = [
-    { label: "Home", navigateTo: "home"  },
-    { label: "Socials", navigateTo: "social-media" },
-    { label: "Digital", navigateTo: "digital" },
-    { label: "Traditional", navigateTo: "traditional" },
-    { label: "Shop", navigateTo: "commission" },
-    { label: "7\\", href: "https://youtu.be/SqayDnQ2wmw?si=wSCyIyzGNIYscSGz" }, // link spotify
     { label: "MV", href: "https://youtu.be/WXR-bCF5dbM?si=fmFLWXkdMhq6A8Xb" }, // favorite gorliazz music video
     { label: "Animation", href: "https://youtu.be/f0g0jzm0mYA?si=--F9L6vPUCRamI5A" }, // favorite animation
-    { label: "Inspiration", href: "https://www.jenniferxiao.com/" }, // link website i inspired from
-    { label: "DEVO", href: "https://youtu.be/fUJNty7Q76k?si=5_KeUp3PApK0NTS4" }, // link website i inspired from
+    { label: "7\\", href: "https://youtu.be/SqayDnQ2wmw?si=wSCyIyzGNIYscSGz" }, // link spotify
+    { label: "Oingo", href: "https://youtu.be/l4ck-3K2eO8?si=QjKVCXhHYWrDHzKz" },
+    { label: "DEVO", href: "https://youtu.be/fUJNty7Q76k?si=5_KeUp3PApK0NTS4" }, // link website i inspired from" },
+       { label: "Cool!", href: "https://toandromedaandback.com/index" },
+    { label: "Inspo 1", href: "https://www.jenniferxiao.com/" },
+    { label: "Inspo 2", href: "https://leopardotted.neocities.org/" },
+    { label: "Inspo 3", href: "https://www.are.na/evan-collins-1522646491/wacky-pomo" },
+    { label: "Inspo 4", href: "https://frutigeraeroarchive.org/" },
+
+
     { label: "?", href: "https://youtu.be/H4dGpz6cnHo?si=4vXs-YnIrBkH1NJo" }, 
 ];
 
@@ -64,7 +66,7 @@ export const CONTACT_ACTIONS: ContactAction[] = [
 export type InterestRow = { label: string; value: string };
 
 export const INTERESTS: InterestRow[] = [
-    { label: "General", value: "I enjoy so many genres of music, including metal, electronic, swancore, new wave, and much more. I also play the bass guitar for a band. I love insects, especially hercules beetles. I also love plants, skateboards, Animal Crossing, aliens, liminal/industrial photography, Tetris, Gorillaz, Animal Jam, Minecraft, CDs, cassettes, old cameras/cars, and of course I love art." },
+    { label: "General", value: "I love music, beetles, skateboards, liminal/industrial photography, old internet/websites/games, physical media, old cameras/cars, thrift stores, and of course, art. I enjoy many genres of music, including metal, electronic, swancore, new wave, emo, and much more. I also play the bass guitar in a band!" },
     {
         label: "Music",
         value:
