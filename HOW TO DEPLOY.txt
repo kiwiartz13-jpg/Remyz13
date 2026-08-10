@@ -16,6 +16,7 @@ Third
 
 Fourth
  - Now to build the live website
+ Press Control C
  - Run "npm run deploy" inside the terminal
  - It will take approx. 5 minutes
 
