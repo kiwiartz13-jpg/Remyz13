@@ -63,9 +63,9 @@ export default function ProfileCard() {
                 </div>
 
                 <div className="flex flex-col">
-                    <div className="flex flex-row gap-0.5 self-center">
-                        <img src={antiai} className="w-20"/>
-                        <img src={computer} className="w-20"/>
+                    <div className="flex w-full max-w-60 items-center gap-0.5 self-center">
+                        <img src={antiai} alt="This is an anti-AI site" className="h-auto min-w-0 flex-1"/>
+                        <img src={computer} alt="Best viewed with a computer" className="h-auto min-w-0 flex-1"/>
                     </div>
                     <p className="my-[10px] flex flex-row text-[95%] font-bold text-[#0C8C00]">
                         <img

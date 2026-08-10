@@ -109,7 +109,7 @@ export default function PianoPanel() {
         aria-label="Play the next note of the scale"
         className="cursor-pointer border-0 bg-transparent p-0 hover:scale-y-102 hover:scale-x-101"
       >
-        <img src={piano} alt="" className="block max-w-none active:scale-95 transition-transform duration-100" />
+        <img src={piano} alt="" className="block active:scale-95 transition-transform duration-100" />
       </button>
 
       {createPortal(

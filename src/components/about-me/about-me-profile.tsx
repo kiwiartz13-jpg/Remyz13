@@ -12,7 +12,7 @@ import ProfileNav from "./panels/profile-nav";
 import BlurbsPanel from "./panels/blurbs-panel";
 import FriendCommentsPanel from "./panels/friend-comments-panel";
 import FriendSpacePanel from "./panels/friend-space-panel";
-import NotepadPanel from "./panels/notepad-panel";
+import NotepadPanel from "./panels/ocs-panel";
 import Taskbar from "./taskbar";
 import XpWindow from "./xp-window";
 import PianoPanel from "./panels/piano-panel";

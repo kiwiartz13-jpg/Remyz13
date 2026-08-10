@@ -4,11 +4,10 @@ import { FRIENDS, type Friend } from "../data";
 import { VerifiedIcon } from "../icon";
 import XpWindow from "../xp-window";
 
-const pickSfx = (sfx: string[]) => sfx[Math.floor(Math.random() * sfx.length)];
-
 export default function FriendSpacePanel() {
   const [talking, setTalking] = useState<string | null>(null);
   const clip = useRef<HTMLAudioElement | null>(null);
+  const sfxIndex = useRef<Record<string, number>>({});
 
   useEffect(() => {
     for (const friend of FRIENDS) new Image().src = friend.pfpAlt;
@@ -17,7 +16,9 @@ export default function FriendSpacePanel() {
 
   function greet(friend: Friend) {
     clip.current?.pause();
-    const audio = playSound(pickSfx(friend.sfx));
+    const index = sfxIndex.current[friend.name] ?? 0;
+    sfxIndex.current[friend.name] = (index + 1) % friend.sfx.length;
+    const audio = playSound(friend.sfx[index]);
     clip.current = audio;
     const stop = () => clip.current === audio && setTalking(null);
     audio.addEventListener("ended", stop);

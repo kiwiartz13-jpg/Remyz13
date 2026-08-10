@@ -3,9 +3,8 @@ import './App.css'
 import Homepage from './layout/homepage'
 import Digital from './layout/digital'
 import Traditional from './layout/traditional'
-import wallpaper from './assets/wallpaper.png'
-import xpWallpaper from './assets/windowsxp.png'
 import type { Page } from './utils/parseImageConfig'
+import { wallpaperStyle } from './utils/wallpapers'
 import Commission from './layout/commission'
 import SocialMedia from './layout/social-media'
 import AboutMe from './layout/about-me'
@@ -50,7 +49,7 @@ export default function App() {
   }, []);
 
   return (
-    <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#1A355E', backgroundImage: `url(${screen === 'about-me' ? xpWallpaper : wallpaper})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', ...wallpaperStyle(screen) }}>
       {screen === 'home' && (
         <div style={{ width: 1920, height: 1080, transform: `scale(${scale})`, transformOrigin: 'center', flexShrink: 0 }}>
           <Homepage onNavigate={navigate} />
