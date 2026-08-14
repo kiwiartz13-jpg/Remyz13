@@ -1,7 +1,6 @@
 import type { InterestRow } from "../data";
+import NoteButton from "../note-spawner";
 import XpWindow from "../xp-window";
-
-const CELL = "w-full bg-[#e7e4cf] align-top";
 
 export default function InterestsPanel({
     title,
@@ -19,13 +18,23 @@ export default function InterestsPanel({
                     <tbody className={stackBody ? "flex flex-col" : undefined}>
                         {rows.map((row) => (
                             <tr key={row.label} className="flex flex-col">
-                                <td className={CELL}>
+                                <td className="w-full bg-[#e7e4cf] align-top">
                                     <p className="m-0 mb-[3px] border-b-2 border-[#e7e4cf] [border-bottom-style:ridge] px-[0.3em] pt-[0.3em] text-[12px] leading-[initial] font-bold wrap-break-word text-[#1D4ED8]">
                                         {row.label}
                                     </p>
                                 </td>
-                                <td className={CELL}>
+                                <td className="w-full bg-[#e7e4cf] align-top">
                                     <p className="m-0 mb-[3px] p-[0.3em] text-[12px] leading-[initial] wrap-break-word">{row.value}</p>
+                                    {row.src && (row.instrument ? (
+                                        <NoteButton
+                                            src={row.src}
+                                            instrument={row.instrument}
+                                            label="Play the next note of the bassline"
+                                            imgClassName="pl-3 pr-3 mt-2 mb-2"
+                                        />
+                                    ) : (
+                                        <img className="pl-3 pr-3 mt-2 mb-2" src={row.src} alt="" />
+                                    ))}
                                 </td>
                             </tr>
                         ))}

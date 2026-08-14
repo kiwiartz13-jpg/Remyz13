@@ -20,7 +20,12 @@ import zimPfp from "../../assets/about-me/profiles/zim.svg";
 import hachiwarePfpAlt from "../../assets/about-me/profiles/hachiware-alt.jpg";
 import murdocPfpAlt from "../../assets/about-me/profiles/murdoc-alt.svg";
 import zimPfpAlt from "../../assets/about-me/profiles/zim-alt.svg";
-
+import bass from "../../assets/about-me/bass.png"
+import bassEb1 from "../../assets/about-me/sfx/bass/eb1.mp3";
+import bassGb1 from "../../assets/about-me/sfx/bass/gb1.mp3";
+import bassAb1 from "../../assets/about-me/sfx/bass/ab1.mp3";
+import bassBb1 from "../../assets/about-me/sfx/bass/bb1.mp3";
+import bassCb2 from "../../assets/about-me/sfx/bass/cb2.mp3";
 import hachiwareSound1 from "../../assets/about-me/profiles/hachiware-sound1.mp3";
 import hachiwareSound2 from "../../assets/about-me/profiles/hachiware-sound2.mp3";
 import hachiwareSound3 from "../../assets/about-me/profiles/hachiware-sound3.mp3";
@@ -40,14 +45,12 @@ export const NAV_LINKS: NavLink[] = [
     { label: "7\\", href: "https://youtu.be/SqayDnQ2wmw?si=wSCyIyzGNIYscSGz" }, // link spotify
     { label: "Oingo", href: "https://youtu.be/l4ck-3K2eO8?si=QjKVCXhHYWrDHzKz" },
     { label: "DEVO", href: "https://youtu.be/fUJNty7Q76k?si=5_KeUp3PApK0NTS4" }, // link website i inspired from" },
-       { label: "Cool!", href: "https://toandromedaandback.com/index" },
+    { label: "Cool!", href: "https://toandromedaandback.com/index" },
     { label: "Inspo 1", href: "https://www.jenniferxiao.com/" },
     { label: "Inspo 2", href: "https://leopardotted.neocities.org/" },
     { label: "Inspo 3", href: "https://www.are.na/evan-collins-1522646491/wacky-pomo" },
     { label: "Inspo 4", href: "https://frutigeraeroarchive.org/" },
-
-
-    { label: "?", href: "https://youtu.be/H4dGpz6cnHo?si=4vXs-YnIrBkH1NJo" }, 
+    { label: "?", href: "https://youtu.be/H4dGpz6cnHo?si=4vXs-YnIrBkH1NJo" },
 ];
 
 export type ContactAction = { label: string; icon: string; sfx: string };
@@ -59,14 +62,52 @@ export const CONTACT_ACTIONS: ContactAction[] = [
     { label: "Forward to Friend", icon: arrowRightIcon, sfx: sound8 },
     { label: "Instant Message", icon: emailIcon, sfx: sound4 },
     { label: "Block User", icon: exclamationIcon, sfx: sound5 },
-    { label: "Add to Group", icon: groupAddIcon, sfx: sound6},
-    { label: "Report User", icon: flagRedIcon, sfx: sound7  },
+    { label: "Add to Group", icon: groupAddIcon, sfx: sound6 },
+    { label: "Report User", icon: flagRedIcon, sfx: sound7 },
 ];
 
-export type InterestRow = { label: string; value: string };
+// A note is either synthesised (freq) or a recorded sample; `stem` only drives the floating glyph.
+export type ScaleNote = { stem: "up" | "down"; freq?: number; sample?: string };
+export type Instrument = { notes: ScaleNote[]; wave?: OscillatorType; decay?: number; peak?: number };
+
+export const PIANO: Instrument = {
+    wave: "triangle",
+    decay: 1.3,
+    peak: 0.16,
+    notes: [
+        { freq: 261.63, stem: "up" },
+        { freq: 293.66, stem: "up" },
+        { freq: 329.63, stem: "up" },
+        { freq: 349.23, stem: "up" },
+        { freq: 392.0, stem: "up" },
+        { freq: 440.0, stem: "up" },
+        { freq: 493.88, stem: "down" },
+        { freq: 523.25, stem: "down" },
+    ],
+};
+
+// Feel Good Inc. main riff, Eb minor (the record's half-step-down tuning).
+export const BASS: Instrument = {
+    notes: [
+        { sample: bassEb1, stem: "up" }, // 0
+        { sample: bassEb1, stem: "up" }, // 0
+        { sample: bassGb1, stem: "up" }, // 3
+        { sample: bassAb1, stem: "up" }, // 5
+        { sample: bassCb2, stem: "up" }, // 8
+        { sample: bassBb1, stem: "up" }, // 7 (tied, so only picked once)
+        { sample: bassAb1, stem: "up" }, // 5
+        { sample: bassAb1, stem: "up" }, // 5
+        { sample: bassCb2, stem: "up" }, // 8
+        { sample: bassBb1, stem: "up" }, // 7
+        { sample: bassGb1, stem: "up" }, // 3
+        { sample: bassEb1, stem: "up" }, // 0
+    ],
+};
+
+export type InterestRow = { label: string; value: string, src?: string, instrument?: Instrument };
 
 export const INTERESTS: InterestRow[] = [
-    { label: "General", value: "I love music, beetles, skateboards, liminal/industrial photography, old internet/websites/games, physical media, old cameras/cars, thrift stores, and of course, art. I enjoy many genres of music, including metal, electronic, swancore, new wave, emo, and much more. I also play the bass guitar in a band!" },
+    { label: "General", value: "I love music, beetles, skateboards, liminal/industrial photography, old internet/websites/games, physical media, old cameras/cars, thrift stores, and of course, art. I enjoy many genres of music, including metal, electronic, swancore, new wave, emo, and much more. I also play the bass guitar in a band!", src: bass, instrument: BASS},
     {
         label: "Music",
         value:
@@ -119,15 +160,3 @@ export const BLURBS: Blurb[] = [
     { heading: "Who I'd like to meet:", body: "Jamie Hewlett, Danny Dlfman, Neil Cicierega, Richard D James" },
 ];
 
-export type ScaleNote = { freq: number; stem: "up" | "down" };
-
-export const SCALE: ScaleNote[] = [
-    {  freq: 261.63, stem: "up" },
-    {  freq: 293.66, stem: "up" },
-    {  freq: 329.63, stem: "up" },
-    {  freq: 349.23, stem: "up" },
-    {  freq: 392.0, stem: "up" },
-    {  freq: 440.0, stem: "up" },
-    {  freq: 493.88, stem: "down" },
-    {  freq: 523.25, stem: "down" },
-];
