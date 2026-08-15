@@ -4,6 +4,7 @@ import type { Page } from "./parseImageConfig";
 import defaultWallpaper from "../assets/wallpapers/default.png";
 import xpWallpaper from "../assets/wallpapers/windowsxp.png";
 import fish from "../assets/wallpapers/fish.jpg";
+import plasticbeach from "../assets/wallpapers/plastic.png";
 
 export type Wallpaper = {
     image: string;
@@ -18,7 +19,7 @@ export const WALLPAPERS: Record<Page, Wallpaper> = {
     "digital":      { image: defaultWallpaper },
     "traditional":  { image: defaultWallpaper },
     "commission":   { image: fish },
-    "social-media": { image: defaultWallpaper },
+    "social-media": { image: plasticbeach },
     "about-me":     { image: xpWallpaper },
 };
 

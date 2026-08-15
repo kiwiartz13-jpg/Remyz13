@@ -23,16 +23,16 @@ function SocialMediaButton({
     return (
         <button
             onClick={() => window.open(url, "_blank", "noopener,noreferrer")}
-            className="relative w-full items-center flex cursor-pointer bg-[rgba(22,31,67,.75)] hover:bg-(--hover-color) hover:scale-103 transition-colors duration-300 ease-in-out"
+            className="relative w-full items-center flex cursor-pointer bg-[rgba(22,31,67,.45)] hover:bg-(--hover-color) hover:scale-103 hover:opacity-80 transition-colors duration-300 ease-in-out"
             style={{ "--hover-color": hoverColor, height: "clamp(60px, 9.5vw, 152px)" } as React.CSSProperties}
         >
-            <div className="absolute left-0 flex justify-start" style={{ width: "clamp(80px, 10vw, 160px)" }}>
+            <div className="absolute left-0 flex justify-start " style={{ width: "clamp(80px, 10vw, 160px)" }}>
                 <img className="w-full h-auto block" src={icon}/>
             </div>
 
             <div className="w-full flex justify-center">
                 <span className="text-white" style={{
-                    fontFamily: "'Patrick Hand SC'",
+                    fontFamily: "'Fontdiner Swanky'",
                     fontSize: "clamp(28px, 3.33vw, 64px)"
                 }}>
                     {text}
